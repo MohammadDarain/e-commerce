@@ -5,7 +5,7 @@ import FormatPrice from "../Helper/FormatePrice";
 import { Button } from "../styles/Button";
 
 const FilterSection = () => {
-  const { filters: { text, category, color, price, minPrice, maxPrice }, updateFilterValue, all_products,clearFilters } = useFilterContext();
+  const { filters: { text, category, color, price, minPrice, maxPrice }, updateFilterValue, all_products, clearFilters } = useFilterContext();
 
   // get the unique values of each property
   const getUniqueData = (data, attr) => {
