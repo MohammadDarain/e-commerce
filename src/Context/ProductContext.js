@@ -44,6 +44,7 @@ const AppProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        console.log("firstLine")
         getProducts(API);
     }, [])
 
