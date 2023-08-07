@@ -1,12 +1,23 @@
 import { useProductContext } from "../Context/ProductContext";
 import styled from "styled-components";
 import Product from "./Product";
+import { Bars } from  'react-loader-spinner'
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext();
-// const {isLoading,featureProducts} = useContext(AppContext);
+  // const {isLoading,featureProducts} = useContext(AppContext);
   if (isLoading) {
-    return <div> ......Loading </div>;
+    return <div style={{display:"flex",justifyContent:"center"}}>
+    <Bars
+    height="50vh"
+    width="50"
+    color="#4fa94d"
+    ariaLabel="bars-loading"
+    wrapperStyle={{}}
+    wrapperClass=""
+    visible={true}
+  />
+    </div>;
   }
 
   return (

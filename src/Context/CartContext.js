@@ -13,7 +13,7 @@ const CartContext = createContext();
 // }
 const initialState = {
     // cart: [],
-    cart: JSON.parse(localStorage.getItem("cartDataWithLocal")) || [],
+    cart: JSON.parse(localStorage.getItem("cartDataWithLocal"))  ,
     total_item: "",
     total_amount: "",
     shipping_fee: 5000

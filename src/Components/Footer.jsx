@@ -25,21 +25,14 @@ const Footer = () => {
                 {/* footer section */}
 
                 <footer>
-                    <div className="container grid grid-four-column">
+                    <div className="container grid grid-three-column">
                         <div className="footer-about">
                             <h3>Mohammad Store</h3>
                             <p>Faster buying process.</p>
                             <p>Flexibility for customers.</p>
                             <p>Affordable advertising and marketing.</p>
                         </div>
-                        <div className="footer-subscribe">
-                            <h3>Subscribe to get important updates</h3>
-                            <form action="#">
-                                <input type="email" name="email" placeholder="YOUR E-MAIL" autoComplete="OFF"/>
-
-                                <input type="submit" value="subscribe"  />
-                            </form>
-                        </div>
+                       
                         <div className="footer-social">
                             <h3>Follow Us</h3>
                             <div className="footer-social--icons">

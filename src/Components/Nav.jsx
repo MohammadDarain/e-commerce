@@ -7,7 +7,7 @@ import { useCartContext } from "../Context/CartContext";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
-const {total_item} =useCartContext();
+  const { total_item } = useCartContext();
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -169,7 +169,7 @@ const {total_item} =useCartContext();
           <li>
             <NavLink
               to="/"
-              className="navbar-link "
+              className="navbar-link"
               onClick={() => setMenuIcon(false)}>
               Home
             </NavLink>
@@ -202,6 +202,14 @@ const {total_item} =useCartContext();
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
               <span className="cart-total--item"> {total_item} </span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}>
+              About
             </NavLink>
           </li>
         </ul>

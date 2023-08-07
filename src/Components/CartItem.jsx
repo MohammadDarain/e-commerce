@@ -59,5 +59,4 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
     </div>
   );
 };
-
 export default CartItem;
