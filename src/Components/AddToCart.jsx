@@ -6,7 +6,7 @@ import { Button } from '../styles/Button';
 import { NavLink } from 'react-router-dom';
 import { useCartContext } from '../Context/CartContext';
 const AddToCart = ({ product }) => {
-
+  
   const {addToCart}=useCartContext()
   
   //console.log("pro",product);

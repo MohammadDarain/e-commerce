@@ -7,7 +7,7 @@ import FormatPrice from "./Helper/FormatePrice";
 
 const Cart = () => {
   const { cart, clearCart, total_amount, shipping_fee } = useCartContext();
-  // console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
+   console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
 
   if (cart.length === 0) {
     return (
