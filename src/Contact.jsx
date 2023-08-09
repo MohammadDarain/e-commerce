@@ -54,11 +54,11 @@ const Contact = () => {
               required
               autoComplete="off"
             />
-            <input
+            <input 
               type="email"
-              name="Email"
+              name="Email" 
               placeholder="Email"
-              autoComplete="off"
+              autoComplete="off" 
               required
             />
 

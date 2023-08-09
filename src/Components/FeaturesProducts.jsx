@@ -5,7 +5,7 @@ import { Bars } from  'react-loader-spinner'
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext();
-  console.log("featureProducts",featureProducts)
+  console.log("featureProducts",featureProducts)  
   // const {isLoading,featureProducts} = useContext(AppContext);
   if (isLoading) {
     return <div style={{display:"flex",justifyContent:"center"}}>

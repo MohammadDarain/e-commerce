@@ -1,0 +1,37 @@
+.LoginCss{
+    padding: 30px 30px 10px 30px;
+    border: 2px solid #D6D2D2;
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 30px #d6d2d2;
+    
+}
+
+.LoginCss:hover{
+    border-radius: 35px;
+    box-shadow: 10px 10px  #d6d2d2;
+}
+.main{
+    /* margin: 100px; */
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid black; */
+}
+.have_an_account{
+   text-align: center;
+   margin-top: 20px;
+   margin-bottom: 10px;
+    color: rgb(207, 73, 73);
+}
+
+.input_feild{
+    margin: 30px;
+    
+}
+.input_feild input{
+    width:15pc
+}
+a.active_class{
+    color: blue;
+    border-bottom: 1px solid red;
+}

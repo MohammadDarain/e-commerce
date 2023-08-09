@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,createContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './Home'
 import About from './About'
@@ -11,9 +11,13 @@ import { GlobalStyle } from './GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
+import SignUp from './SignUp/SignUp'
+import Login from './LOGIN/Login'
 
+export const DataParentContext = createContext();
 const App = () => {
 
+  const [LoginDetails,setLoginDetails] = useState()
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -41,8 +45,10 @@ const App = () => {
   };
 
   return (
+
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+      <DataParentContext.Provider value={{LoginDetails,setLoginDetails}}>
         <GlobalStyle />
         <Header/>
         <Routes>
@@ -51,13 +57,17 @@ const App = () => {
           <Route path='/Products' element={<Products />} />
           <Route path='/Contact' element={<Contact />} />
           <Route path='/Cart' element={<Cart />} />
+          <Route path='/Login' element={<Login/>} />
+          <Route path='/SignUp' element={<SignUp/>} />
           <Route path='/SingleProduct/:id' element={<SingleProduct />} />
           <Route path='/*' element={<ErrorPage />} />
         </Routes>
         <Footer/>
+        </DataParentContext.Provider>
       </BrowserRouter>
     </ThemeProvider>
   )
 }
 
 export default App ;
+
