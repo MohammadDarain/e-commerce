@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import '../LOGIN/Login.css';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const navegate = useNavigate();
@@ -29,23 +31,89 @@ const SignUp = () => {
     let passwordPatern = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
 
     if (email === "" && password === "" && userName === "") {
-      return alert("All  input field are  mandatory ...")
+      toast.error("All  input field are  mandatory ...", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } else if (userName === '') {
-      alert('Please enter username ...')
+      toast.error('Please enter username ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } else if (email === '') {
-      alert('Please enter Email ...')
-    }else if (!email.match(emailPattern)) {
-      alert('Please enter valid email ...')
+      toast.error('Please enter Email ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    } else if (!email.match(emailPattern)) {
+      toast.error('Please enter valid email ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } else if (password === "") {
-      alert('Please enter Password ...')
+      toast.error('Please enter Password ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } else if (!password.match(passwordPatern)) {
-      alert('Password must be alpha-numric ...')
+      toast.error('Password must be alpha-numric ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } else {
       localStorage.setItem("userName", userName)
       localStorage.setItem("email", email)
       localStorage.setItem("password", password)
-      alert("Registered Successfully");
-      navegate('/Login')
+      toast.success("Registered Successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      });
+      //navegate('/Login')
+      setUsername("");
+      setEmiail("");
+      setpassword("");
     }
   }
 
@@ -53,7 +121,7 @@ const SignUp = () => {
     <div className="main">
       <div className="LoginCss">
         <h2 style={{ textAlign: "center" }}>Signup Here</h2>
-
+        <p><ToastContainer /></p>
         <div className="form_feild" >
           <div className="input_feild">
             <input

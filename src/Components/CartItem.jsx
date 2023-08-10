@@ -54,7 +54,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
       </div>
 
       <div>
-        <FaTrash className="remove_icon" onClick={() => removeItem(id)} />
+        <FaTrash className="remove_icon" onClick={() => removeItem(id)} title="Delete"/>
       </div>
     </div>
   );

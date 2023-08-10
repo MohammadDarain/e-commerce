@@ -27,7 +27,7 @@ const Footer = () => {
                 <footer>
                     <div className="container grid grid-three-column">
                         <div className="footer-about">
-                            <h3>Mohammad Store</h3>
+                            <h3>E-Commerce Store</h3>
                             <p>Faster buying process.</p>
                             <p>Flexibility for customers.</p>
                             <p>Affordable advertising and marketing.</p>
@@ -64,7 +64,7 @@ const Footer = () => {
                         <hr />
                         <div className="container grid grid-two-column ">
                             <p>
-                                @{new Date().getFullYear()} Mohammad Store. All Rights Reserved
+                                @{new Date().getFullYear()} E-Commerce Store. All Rights Reserved
                             </p>
                             <div>
                                 <p>PRIVACY POLICY</p>

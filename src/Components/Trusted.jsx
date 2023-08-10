@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import AbuDhabi from '../Images/AbuDhabi.png'
+import Gucci from '../Images/Gucci.jpg'
+import boat from '../Images/boat.jpg'
+import iphone from '../Images/Iphone.jpg'
+import Rolex from '../Images/Rolex.jpg'
+
 const Trusted = () => {
   return (
     <Wrapper className="brand-section">
@@ -9,34 +13,33 @@ const Trusted = () => {
           {/* my 1st img  */}
           <div className="slide">
             <img
-              src={AbuDhabi}
+              src={Gucci}  style={{width:"80px",height:"30px"}}
               alt="trusted-brands"
             />
           </div>
           <div className="slide">
             <img
-              src={AbuDhabi}
+              src={boat}  style={{width:"70px",height:"30px"}}
               alt="trusted-brands"
             />
           </div>
           <div className="slide">
+            <img 
+              src={iphone}  style={{width:"70px",height:"30px"}}
+              alt="trusted-brands"
+            />
+          </div>
+         
+          <div className="slide">
             <img
-              src={AbuDhabi}
+              src={Rolex} style={{width:"70px",height:"30px"}}
               alt="trusted-brands"
             />
           </div>
           <div className="slide">
-            <img
-              src={AbuDhabi}
-              alt="trusted-brands"
-            />
+            <h2 >More Brands...</h2>
           </div>
-          <div className="slide">
-            <img
-              src={AbuDhabi}
-              alt="trusted-brands"
-            />
-          </div>
+         
         </div>
       </div>
     </Wrapper>

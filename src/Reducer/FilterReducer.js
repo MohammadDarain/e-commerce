@@ -13,11 +13,15 @@ const FilterReducer = (state, action) => {
         filters: { ...state.filters, maxPrice, price: maxPrice },
       };
       case "CLEAR_FILTERS":
+        // if(state.all_products ===[]){
+        //   console.log("darain!")
+        //   return
+        // }
         return {
           ...state,
           filters: {
             ...state.filters,
-            text: "",
+            text: "",   
             category: "all",
             company: "all",
             color: "all",
@@ -25,6 +29,7 @@ const FilterReducer = (state, action) => {
             price: state.filters.maxPrice,
             minPrice: state.filters.maxPrice,
           },
+        
         };
   
     case "SET_GRID_VIEW":

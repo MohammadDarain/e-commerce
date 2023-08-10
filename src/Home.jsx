@@ -8,7 +8,7 @@ import FeaturesProducts from './Components/FeaturesProducts';
 export const Home = () => {
 
   const data = {
-    name: "Mohammad store",
+    name: "E-Commerce store",
   };
 
   return (<>

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 const Contact = () => {
+
+  const obj={
+    userName: localStorage.getItem("userName"),
+    email: localStorage.getItem("email"),
+  }
+
   const Wrapper = styled.section`
     padding: 3rem 0 5rem 0;
     text-align: center;
@@ -48,14 +54,17 @@ const Contact = () => {
             method="POST"
             className="contact-inputs">
             <input
-              type="text"
-              placeholder="username"
+              type="text" 
+              value={obj.userName}
+              placeholder="Username"
               name="username"
               required
               autoComplete="off"
             />
             <input 
               type="email"
+              
+              value={obj.email}
               name="Email" 
               placeholder="Email"
               autoComplete="off" 

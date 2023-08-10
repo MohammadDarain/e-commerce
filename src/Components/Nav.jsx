@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
@@ -7,12 +7,14 @@ import { useCartContext } from '../Context/CartContext';
 import '../LOGIN/Login.css';
 import { Button } from "../styles/Button";
 import { DataParentContext } from '../App';
+import { ToastContainer, toast } from 'react-toastify';
+import { capitalize } from "@mui/material";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   const Context = useContext(DataParentContext);
-
-  const {LoginDetails,setLoginDetails}  = Context
+  const navegate = useNavigate();
+  // const {LoginDetails,setLoginDetails}  = Context
   // console.log("Context",LoginDetails);
 
   let loginCheck = localStorage.getItem("logIn")
@@ -20,14 +22,38 @@ const Nav = () => {
   console.log(loginCheck, "loginCheck");
   console.log(userName, "userName.....");
 
-  const signOut = () => {
-    localStorage.setItem("logIn","")
-    //localStorage.setItem("userName","")
-    Context.setLoginDetails([])
-   
-  }
- 
+  function signOut() {
 
+    localStorage.setItem("logIn", "")
+    //localStorage.setItem("userName","")
+    toast.success("Log Out Successfully ...", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    Context.setLoginDetails([])
+    navegate('/Login')
+    alert("Log Out")
+  }
+  useEffect(() => {
+    if (loginCheck) {
+      toast.success("Login Successfully ...", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [loginCheck])
   const { total_item } = useCartContext();
 
 
@@ -188,21 +214,21 @@ const Nav = () => {
   return (
     <>
       {
-        loginCheck ? <h2>Hi {userName}  </h2>: 
-        
-        <p style={{ fontSize: "25px" }}>
-          <NavLink exact
-            to="/Login"
-            onClick={() => setMenuIcon(false)}>
-            <Button>Log In</Button>
-          </NavLink>
-        </p>
+        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>Hi  {userName} <ToastContainer/>  </h2> :
+
+          <p style={{ fontSize: "25px" }}>
+            <NavLink
+              to="/Login"
+              onClick={() => setMenuIcon(false)}>
+              <Button>Log In</Button>
+            </NavLink>
+          </p>
       }
-      
+
       <Nav>
+
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
-          
             <li>
               <NavLink exact activeClassName="active_class"
                 to="/"
@@ -235,17 +261,17 @@ const Nav = () => {
                 Contact
               </NavLink>
             </li>
-            
+
             <li>
               <NavLink exact to="/cart" activeClassName="active_class" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
-                <FiShoppingCart className="cart-trolley" />
+                <FiShoppingCart className="cart-trolley" title="Cart"/>
                 <span className="cart-total--item"> {total_item} </span>
               </NavLink>
             </li>
             <li>
-            {loginCheck  && <Button onClick={signOut}>Log Out</Button>}
-            
-          </li>
+              {loginCheck && <Button onClick={signOut}>Log Out</Button>}
+
+            </li>
           </ul>
 
           {/* two button for open and close of menu */}
