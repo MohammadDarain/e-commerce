@@ -6,7 +6,7 @@ import Nav from './Nav'
 const Header = () => {
   return (
     <MainHeader>
-        <NavLink to="/" style={{backgroundColor:"#ac2020"}}>
+        <NavLink to="/" style={{borderBottom:"2px solid #ac2020"}}>
         <img src={eCommerce}  style={{width:"146px" ,height:"28px"}} alt="Logo" />
         </NavLink>
         <Nav/>
@@ -15,7 +15,7 @@ const Header = () => {
 }
 const MainHeader = styled.header`
 
-padding: 0 4.8rem;
+padding: 0 2.8rem;
 height: 7rem;
 background-color: ${({ theme }) => theme.colors.bg};
 display: flex;

@@ -1,5 +1,5 @@
 .LoginCss{
-    padding-top: 30px ;
+    padding-top: 26px ;
     padding-bottom: 20px ;
     border: 2px solid #D6D2D2;
     margin-top: 30px;
@@ -10,7 +10,7 @@
 
 .LoginCss:hover{
     border-radius: 35px;
-    box-shadow: 10px 10px #f6f8fa;
+    box-shadow: 10px 10px #adadad;
 }
 .main{
     /* margin: 100px; */

@@ -268,7 +268,7 @@ const Nav = () => {
                 <span className="cart-total--item"> {total_item} </span>
               </NavLink>
             </li>
-            <li>
+            <li onClick={() => setMenuIcon(false)}>
               {loginCheck && <Button onClick={signOut}>Log Out</Button>}
 
             </li>
