@@ -77,6 +77,7 @@ const Login = () => {
         theme: "light",
       })
     } else if (!password.match(passwordPatern)) {
+      setpassword("")
       toast.error('Password must be alpha-numric ...',{
         position: "top-right",
         autoClose: 5000,
@@ -86,8 +87,9 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-      })
-      //setPassword('');
+      });
+      
+      
     } else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
       toast.error("Your email and password do not match Please try again ...",{
         position: "top-right",
@@ -98,13 +100,14 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-      })
-      //setPassword('');
+      });
+      setpassword('');
+      setEmiail("")
 
     } else {
       if (email === localStorage.getItem("email") && password === localStorage.getItem("password")) {
         localStorage.setItem("logIn", true)
-        toast.success("Login Successfully daaaaaaa ...", {
+        toast.success("Login Successfully  ...", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -162,7 +165,7 @@ const Login = () => {
           <h3 className="have_an_account">Don't have an account ?<NavLink to="/Signup">  Create an account</NavLink></h3>
           </div>
           </div>
-          <p><ToastContainer /></p>
+            
     </div>
   );
 };

@@ -13,7 +13,8 @@ import Header from './Components/Header'
 import Footer from './Components/Footer'
 import SignUp from './SignUp/SignUp'
 import Login from './LOGIN/Login'
-
+import Shipping from './Components/Shipping'
+import Summary from './Components/Summary'
 export const DataParentContext = createContext();
 const App = () => {
 
@@ -59,6 +60,8 @@ const App = () => {
           <Route path='/Cart' element={<Cart />} />
           <Route path='/Login' element={<Login/>} />
           <Route path='/SignUp' element={<SignUp/>} />
+          <Route path='/shipping' element={<Shipping/>} />
+          <Route path='/summary' element={<Summary/>} />
           <Route path='/SingleProduct/:id' element={<SingleProduct />} />
           <Route path='/*' element={<ErrorPage />} />
         </Routes>

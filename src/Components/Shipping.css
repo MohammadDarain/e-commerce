@@ -1,0 +1,64 @@
+.main_container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    /* border: 2px solid black; */
+}
+
+.details {
+    width: 40%;
+}
+
+.input_feilds input {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    margin: 20px;
+}
+
+.shipping_box {
+    padding-top: 8px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    /* border: 2px solid black; */
+}
+
+.hr {
+    /* width: 50%; */
+    margin-top: 20px;
+}
+
+.PositionMethod {
+    position: relative;
+}
+
+.butttonNav {
+    position: absolute;
+    top: -80px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+   
+    .container_one{
+        width: 100%;
+    }
+    .main_container {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        
+    }
+    .input_feilds input {
+        
+        width: 80%;
+        padding: 15px;
+        margin: 20px;
+    }
+    .priceHeading{
+        padding-top: 20px;
+    }
+    .hhori{
+        width: 20%;
+    }
+}

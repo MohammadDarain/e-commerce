@@ -1,70 +1,44 @@
+import React from 'react'
+import { useCartContext } from '../Context/CartContext';
+import FormatPrice from '../Helper/FormatePrice';
 import styled from "styled-components";
-import { useCartContext } from "./Context/CartContext";
-import CartItem from "./Components/CartItem";
-import { NavLink } from "react-router-dom";
-import { Button } from "./styles/Button";
-import PriceDetails from "./Components/PriceDetails";
 
-
-const Cart = () => {
-  const { cart, clearCart } = useCartContext();
-  //console.log("cartData", cart);
-
-  if (cart.length === 0) {
-    return (
-      <EmptyDiv>
-        <h3>CART IS EMPTY </h3>
-        <NavLink to="/Products">  <Button>Shop Now</Button></NavLink>
-      </EmptyDiv>
-    );
-  }
-
+const PriceDetails = () => {
+    const {total_amount,total_item, shipping_fee } = useCartContext();
+    
   return (
     <Wrapper>
-      <div className="container">
-        <div className="cart_heading grid grid-five-column">
-          <p>Item</p>
-          <p className="cart-hide">Price</p>
-          <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
-          <p>Remove</p>
+   <div className="order-total--amount">
+          <div className="order-total--subdata">
+          <div>
+          <p>item:</p>
+           <h3> {total_item}</h3>
+          </div>
+            <div>
+            
+              <p>subtotal:</p>
+              <p>
+                <FormatPrice price={total_amount} />
+              </p>
+            </div>
+            <div>
+              <p>shipping fee:</p>
+              <p>
+                <FormatPrice price={shipping_fee} />
+              </p>
+            </div>
+            <hr />
+            <div>
+              <p>order total:</p>
+              <p>
+                <FormatPrice price={shipping_fee + total_amount} />
+              </p>
+            </div>
+          </div>
         </div>
-        <hr />
-        <div className="cart-item">
-          {cart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
-          })}
-        </div>
-        <hr />
-        <div className="cart-two-button">
-
-          <Button className="btn btn-clear" onClick={clearCart}>
-            clear cart
-          </Button>
-          <NavLink to="/shipping">
-            <Button style={{ backgroundColor: "#fb641b" }}> BUY NOW </Button>
-          </NavLink>
-        </div>
-
-        {/* order total_amount */}
-        <PriceDetails />
-      </div>
-    </Wrapper>
-  );
-};
-
-const EmptyDiv = styled.div`
-  display: grid;
-  place-items: center;
-  height: 50vh;
-
-  h3 {
-    font-size: 4.2rem;
-    text-transform: capitalize;
-    font-weight: 300;
-  }
-`;
-
+        </Wrapper>
+  )
+}
 const Wrapper = styled.section`
   padding: 9rem 0;
 
@@ -240,4 +214,5 @@ const Wrapper = styled.section`
   }
 `;
 
-export default Cart;
+
+export default PriceDetails

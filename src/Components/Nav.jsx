@@ -8,7 +8,7 @@ import '../LOGIN/Login.css';
 import { Button } from "../styles/Button";
 import { DataParentContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
-import { capitalize } from "@mui/material";
+
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -23,27 +23,12 @@ const Nav = () => {
   console.log(userName, "userName.....");
 
   function signOut() {
-
-    localStorage.setItem("logIn", "")
-    //localStorage.setItem("userName","")
-    toast.success("Log Out Successfully ...", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    Context.setLoginDetails([])
-    navegate('/Login')
-    alert("Log Out")
-  }
-  useEffect(() => {
-    if (loginCheck) {
-      toast.success("Login Successfully ...", {
-        position: "top-center",
+    const confirm = window.confirm("Are you sure want to log out ?")
+    if(confirm){
+      localStorage.setItem("logIn", "")
+      //localStorage.setItem("userName","")
+      toast.success("Log Out Successfully ...", {
+        position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -52,6 +37,16 @@ const Nav = () => {
         progress: undefined,
         theme: "light",
       });
+      
+      Context.setLoginDetails([])
+      
+      //navegate('/Login')
+      //alert("Log Out")
+    }
+  }
+  useEffect(() => {
+    if (loginCheck) {
+      
     }
   }, [loginCheck])
   const { total_item } = useCartContext();
@@ -214,7 +209,7 @@ const Nav = () => {
   return (
     <>
       {
-        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>Hi  {userName} <ToastContainer/>  </h2> :
+        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>Hi  {userName} <ToastContainer />  </h2> :
 
           <p style={{ fontSize: "25px" }}>
             <NavLink
@@ -230,7 +225,7 @@ const Nav = () => {
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
             <li>
-              <NavLink exact activeClassName="active_class"
+              <NavLink  
                 to="/"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -238,15 +233,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="active_class"
-                to="/about"
-                className="navbar-link "
-                onClick={() => setMenuIcon(false)}>
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink exact activeClassName="active_class"
+              <NavLink  
                 to="/products"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -254,7 +241,15 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="active_class"
+              <NavLink  
+                to="/about"
+                className="navbar-link "
+                onClick={() => setMenuIcon(false)}>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink  
                 to="/contact"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -263,8 +258,8 @@ const Nav = () => {
             </li>
 
             <li>
-              <NavLink exact to="/cart" activeClassName="active_class" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
-                <FiShoppingCart className="cart-trolley" title="Cart"/>
+              <NavLink  to="/cart"  className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+                <FiShoppingCart className="cart-trolley" title="Cart" />
                 <span className="cart-total--item"> {total_item} </span>
               </NavLink>
             </li>

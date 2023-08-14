@@ -6,7 +6,7 @@ import Nav from './Nav'
 const Header = () => {
   return (
     <MainHeader>
-        <NavLink to="/" style={{borderBottom:"2px solid #ac2020"}}>
+        <NavLink to="/" style={{borderBottom:"2px solid #ac2020"}}>     
         <img src={eCommerce}  style={{width:"146px" ,height:"28px"}} alt="Logo" />
         </NavLink>
         <Nav/>

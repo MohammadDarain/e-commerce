@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const Contact = () => {
 
-  const obj={
+  const obj = {
     userName: localStorage.getItem("userName"),
     email: localStorage.getItem("email"),
+    login: localStorage.getItem("logIn")
   }
 
   const Wrapper = styled.section`
@@ -13,7 +14,6 @@ const Contact = () => {
 
     .container {
       margin-top: 6rem;
-
       .contact-form {
         max-width: 50rem;
         margin: auto;
@@ -38,12 +38,10 @@ const Contact = () => {
       }
     }
   `;
-  
+
   return (
     <Wrapper>
       <h2 className="common-heading">Contact page</h2>
-
-
 
       <iframe title="MyImgs" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.076623234526!2d80.91002277456546!3d26.869306561956112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdee2b778b71%3A0x352e3d138a28173f!2sBara%20Imambara!5e0!3m2!1sen!2sin!4v1690388532627!5m2!1sen!2sin" width="100%" height="400" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
 
@@ -54,20 +52,20 @@ const Contact = () => {
             method="POST"
             className="contact-inputs">
             <input
-              type="text" 
-              value={obj.userName}
+              type="text"
+              //value={obj.login &&obj.userName}
               placeholder="Username"
               name="username"
               required
               autoComplete="off"
             />
-            <input 
+            <input
               type="email"
-              
-              value={obj.email}
-              name="Email" 
+
+              //value={obj.login &&obj.email}
+              name="Email"
               placeholder="Email"
-              autoComplete="off" 
+              autoComplete="off"
               required
             />
 
