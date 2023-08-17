@@ -15,6 +15,7 @@ import SignUp from './SignUp/SignUp'
 import Login from './LOGIN/Login'
 import Shipping from './Components/Shipping'
 import Summary from './Components/Summary'
+import Payment from './Components/Payment'
 export const DataParentContext = createContext();
 const App = () => {
 
@@ -62,6 +63,7 @@ const App = () => {
           <Route path='/SignUp' element={<SignUp/>} />
           <Route path='/shipping' element={<Shipping/>} />
           <Route path='/summary' element={<Summary/>} />
+          <Route path='/payment' element={<Payment/>} />
           <Route path='/SingleProduct/:id' element={<SingleProduct />} />
           <Route path='/*' element={<ErrorPage />} />
         </Routes>

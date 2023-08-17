@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { useCartContext } from "./Context/CartContext";
 import CartItem from "./Components/CartItem";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import { Button } from "./styles/Button";
 import PriceDetails from "./Components/PriceDetails";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const Cart = () => {
+  const navegate = useNavigate();
+  const loginStatus = localStorage.getItem("logIn");
   const { cart, clearCart } = useCartContext();
   //console.log("cartData", cart);
 
@@ -17,6 +19,25 @@ const Cart = () => {
         <NavLink to="/Products">  <Button>Shop Now</Button></NavLink>
       </EmptyDiv>
     );
+  }
+
+  const BuyNow = ()=>{
+    if(loginStatus){
+      navegate('/shipping')
+    }else{
+      // alert('please login first')
+      toast.error("Please Login First", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      
+    }
   }
 
   return (
@@ -41,9 +62,9 @@ const Cart = () => {
           <Button className="btn btn-clear" onClick={clearCart}>
             clear cart
           </Button>
-          <NavLink to="/shipping">
-            <Button style={{ backgroundColor: "#fb641b" }}> BUY NOW </Button>
-          </NavLink>
+          <p><ToastContainer/></p>
+            <Button style={{ backgroundColor: "#fb641b" }} onClick={BuyNow}> BUY NOW </Button>
+          
         </div>
 
         {/* order total_amount */}

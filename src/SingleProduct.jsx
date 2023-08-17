@@ -41,7 +41,6 @@ const SingleProduct = () => {
         width="50"
         color="#4fa94d"
         ariaLabel="bars-loading"
-       
         visible={true}
       /></div>
   }

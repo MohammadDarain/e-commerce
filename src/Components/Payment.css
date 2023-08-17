@@ -1,0 +1,93 @@
+.payment_options{
+    display: flex;
+}
+.arrowBack_icon{
+    margin: 12px; 
+   cursor: pointer;
+   color: #8d8f91;
+}
+.price_payment{
+    margin-top: 10px;
+}
+.item_price_details{
+    color:#8d8f91;
+}
+.main_payment{
+    width: 100%;
+    padding: 10px;    
+    /* border: 2px solid black; */
+}
+.mini_payment{
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 75vh;
+    border-top: 1px solid #8d8f91;
+    margin-top: 8px;
+}
+.Delivery_Date_and_Address{
+    display: flex;
+    margin: 12px;
+    padding-top: 10px;
+    
+    /* height: 50vh; */
+}
+.address{
+    padding-top: 16px;
+    padding-left: 10px;
+    color: #8d8f91;
+}
+.date{
+    font-size: 14px;
+    color: #8d8f91;
+    padding-left: 10px;
+}
+.mini_containerOfUPI{
+    position: relative;
+    box-sizing: border-box;
+    margin: 20px 20px 20px 20px;
+}
+.All_payment_option{
+    background-color: #f0f0f5;
+    /* margin-bottom: 200px; */
+    padding-bottom: 6px;
+}
+.UPI{
+    font-size: 15px;
+    color: #3d4046;
+    padding: 20px 10px 0px 30px;
+    font-weight: bold;
+}
+.Add_New_UPI_ID{
+    display: flex;
+    padding:25px 15px 24px 12px;
+    background: white;
+    width: 100%;
+    border-radius: 10px;
+}
+.UPI_Number{
+    color: #f15700;
+}
+.AddIcon{
+    background: white;
+    border: 1px solid #8d8f91;
+    padding: 7px;
+    border-radius: 5px;   
+}
+.NewUPI{
+    margin-left: 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.registeredUPI{
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #8d8f91;
+}
+
+.arrowDown{
+position: absolute;
+left: 750px;
+cursor: pointer;
+}
+

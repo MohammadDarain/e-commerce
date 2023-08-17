@@ -40,7 +40,7 @@ const PriceDetails = () => {
   )
 }
 const Wrapper = styled.section`
-  padding: 9rem 0;
+  padding: 4rem 0;
 
   .grid-four-column {
     grid-template-columns: repeat(4, 1fr);

@@ -40,7 +40,7 @@ const Nav = () => {
       
       Context.setLoginDetails([])
       
-      //navegate('/Login')
+      navegate('/Login')
       //alert("Log Out")
     }
   }
