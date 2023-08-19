@@ -17,7 +17,7 @@ const Shipping = () => {
     const [inputs, setInputs] = useState([]);
 
     const PlaceOrder = () => {
-        //debugger;
+        debugger;
         if (form.username === "" || form.address === "" || form.landmark === "" || form.pincode === "" || form.number === "") {
             toast.error("All  input field are  mandatory ... ", {
                 position: "top-right",
@@ -43,7 +43,8 @@ const Shipping = () => {
             });
         } else if (form.pincode === "") {
             toast.error("Please enter Pincode number", {
-                position: "top-right", autoClose: 5000,
+                position: "top-right",
+                autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -66,23 +67,24 @@ const Shipping = () => {
         }
         else {
             setInputs([...inputs, form])
-            console.log(inputs)
+            console.log("inputs", inputs, form)
             setForm({
-
                 username: "",
                 address: "",
                 landmark: "",
                 pincode: "",
                 number: "",
             })
+           
             navegate("/summary")
         }
     }
     return (
         <div className='main_container'>
             <div className="container_one details">
-                <p><ToastContainer /></p>
+
                 <h2>Enter Details for Shipping</h2>
+                
                 <hr className='hr hori' />
                 <div className='shipping_box'>
                     <div className='input_feilds'>
@@ -118,11 +120,10 @@ const Shipping = () => {
                                 value={form.pincode}
                                 name="pincode"
                                 required
-
                                 onChange={(e) => setForm({ ...form, pincode: e.target.value })}
                             />
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="Phone number"
                                 name="number"
                                 value={form.number}
@@ -130,6 +131,7 @@ const Shipping = () => {
                                 onChange={(e) => setForm({ ...form, number: e.target.value })}
                             />
                             <h3>NOTE: Due to technical issue, we are only accepting COD payment</h3>
+                            
                         </form>
                     </div>
                 </div>
@@ -141,7 +143,7 @@ const Shipping = () => {
                     <PriceDetails />
                 </div>
                 <div className='PositionMethod'>
-                    <Button style={{ backgroundColor: "#fb641b" }} className='butttonNav' onClick={PlaceOrder}> Place order </Button>
+                    <Button style={{ backgroundColor: "#fb641b",marginTop:"6rem" }} className='butttonNav' onClick={PlaceOrder}> Place order </Button>
                 </div>
             </div>
         </div>

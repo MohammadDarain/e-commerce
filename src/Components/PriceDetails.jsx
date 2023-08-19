@@ -151,7 +151,7 @@ const Wrapper = styled.section`
 
   .order-total--amount {
     width: 100%;
-    margin: 4.8rem 0;
+    margin: -0.2rem 0px;
     text-transform: capitalize;
     display: flex;
     flex-direction: column;

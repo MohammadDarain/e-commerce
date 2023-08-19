@@ -18,7 +18,7 @@ import Summary from './Components/Summary'
 import Payment from './Components/Payment'
 export const DataParentContext = createContext();
 const App = () => {
-
+  const LoginStatus = localStorage.getItem("logIn")
   const [LoginDetails,setLoginDetails] = useState()
   const theme = {
     colors: {
@@ -63,7 +63,7 @@ const App = () => {
           <Route path='/SignUp' element={<SignUp/>} />
           <Route path='/shipping' element={<Shipping/>} />
           <Route path='/summary' element={<Summary/>} />
-          <Route path='/payment' element={<Payment/>} />
+         {LoginStatus && <Route path='/payment' element={<Payment/>} />}
           <Route path='/SingleProduct/:id' element={<SingleProduct />} />
           <Route path='/*' element={<ErrorPage />} />
         </Routes>
@@ -73,6 +73,13 @@ const App = () => {
     </ThemeProvider>
   )
 }
+// export function ProtectedRoutes(props){
+//   if(localStorage.getItem('logIn')){
+//     return props.children
+//   }else{
+//     return <Navigate to="/Login"/>
+//   }
+// }
 
 export default App ;
 

@@ -78,7 +78,7 @@ const Login = () => {
       })
     } else if (!password.match(passwordPatern)) {
       setpassword("")
-      toast.error('Password must be alpha-numric ...',{
+      toast.error('Password must be alpha-numric ...', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -88,10 +88,10 @@ const Login = () => {
         progress: undefined,
         theme: "light",
       });
-      
-      
+
+
     } else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
-      toast.error("Your email and password do not match Please try again ...",{
+      toast.error("Your email and password do not match Please try again ...", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -134,7 +134,7 @@ const Login = () => {
     <div className="main">
       <div className="LoginCss">
         <h2 style={{ textAlign: "center" }}>Login Here</h2>
-
+        <p><ToastContainer /></p>
         <div className="form_feild" >
 
           <div className="input_feild">
@@ -160,12 +160,12 @@ const Login = () => {
             />
           </div>
           <div style={{ textAlign: "center", marginTop: "-25px" }}>
-          <input type="submit" value="Log In" onClick={(e) => LoginData(e)} />
+            <input type="submit" value="Log In" onClick={(e) => LoginData(e)} />
           </div>
           <h3 className="have_an_account">Don't have an account ?<NavLink to="/Signup">  Create an account</NavLink></h3>
-          </div>
-          </div>
-            
+        </div>
+      </div>
+
     </div>
   );
 };

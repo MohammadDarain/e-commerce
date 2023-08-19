@@ -7,11 +7,45 @@ import WalletIcon from '@mui/icons-material/Wallet';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import RemoveIcon from '@mui/icons-material/Remove';
-
+import { Button } from '../styles/Button';
+import Amazon from '../Images/Amazon.jpg'
+import PhonePay from '../Images/PhonePe.jpg'
+import PaytmPay from '../Images/Paytm.jpg'
+import Mobikwik from '../Images/Mobikwik.jpg'
 
 const Payment = () => {
-    const [arrowState, setArrowState] = useState(false);
+    const [arrowState1, setArrowState1] = useState(false);
+    const [arrowState2, setArrowState2] = useState(false);
+    const [arrowState3, setArrowState3] = useState(false);
+    const [paytm, setPaytm] = useState(false)
+    const [phonePe, setPhonePe] = useState(false)
+    const [googlePay, setGooglePay] = useState(false)
+    const [UPI, setUPI] = useState(false)
 
+    const Paytm = () => {
+        setPaytm(true)
+        setGooglePay(false)
+        setPhonePe(false)
+        setUPI(false)
+    }
+    const PhonePe = () => {
+        setPaytm(false)
+        setPhonePe(true)
+        setGooglePay(false)
+        setUPI(false)
+    }
+    const GooglePay = () => {
+        setPaytm(false)
+        setGooglePay(true)
+        setPhonePe(false)
+        setUPI(false)
+    }
+    const UPI_ID = () => {
+        setPaytm(false)
+        setGooglePay(false)
+        setPhonePe(false)
+        setUPI(true)
+    }
 
     return (
         <div className='main_payment container'>
@@ -69,16 +103,40 @@ const Payment = () => {
                                 <div className='NewUPI' style={{ color: "#3d4046" }}>Wallets</div>
                                 <div className='registeredUPI'>Paytm,PhonePe,Amazon Pay & more</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState(!arrowState)}>
-                            {arrowState ?  <RemoveIcon style={{ fontSize: "30px", }} />:    <AddIcon style={{ fontSize: "30px", }} />}
+                            <div className='arrowDown' onClick={() => setArrowState1(!arrowState1)}>
+                                {arrowState1 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
+                        </div>
+                        <div>
+                            {arrowState1 &&
+                                <div className='Add_New_UPI_ID Wallet'>
+                                    <div className='inputsWallet'>
+                                        <input type="radio" name='wallet' onClick={Paytm} />
+                                        <img src={PaytmPay} alt="" style={{ width: "50px" }} />
+                                    </div>
+                                    <div className='inputsWallet'>
+                                        <input type="radio" name='wallet' onClick={PhonePe} />
+                                        <img src={PhonePay} alt="" style={{ width: "50px" }} />
+                                    </div>
+                                    <div className='inputsWallet'>
+                                        <input type="radio" name='wallet' onClick={UPI_ID} />
+                                        <img src={Amazon} alt="" style={{ width: "50px" }} />
+                                    </div>
 
+                                    <div className='inputsWallet'>
+                                        <input type="radio" name='wallet' onClick={GooglePay} />
+                                        <img src={Mobikwik} alt="" style={{ width: "50px" }} />
+                                    </div>
+                                </div>
+                            }
+                            {arrowState1 && <div className='Add_New_UPI_ID Wallet'>
+                                {UPI && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Amazon} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
+                                {paytm && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PaytmPay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
+                                {phonePe && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PhonePay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
+                                {googlePay && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Mobikwik} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
+                            </div>}
                         </div>
 
-                        {arrowState && 
-                            <div>
-                            Lorem ipsum, dolor sit amet quisquam modi aliquid explicabo harum neque beatae iste suscipit illum sint. Placeat cupiditate amet dolores eligendi natus consequuntur odit quas delectus accusamus temporibus nesciunt quia debitis beatae voluptatum animi accusantium, voluptates odio deserunt tempora ab iusto doloremque velit, iste harum. Aperiam tenetur ea facilis? Quo esse adipisci obcaecati eveniet, voluptas expedita quos ipsam consectetur. Optio ducimus, laborum in veniam, tempora perspiciatis, hic nobis numquam quisquam recusandae at debitis enim reprehenderit ratione expedita eum illo dolore saepe sit rerum sunt magnam doloremque aliquid. Cum ratione omnis reiciendis ipsa, et magnam. Deserunt dolorem porro iure voluptatibus, quasi itaque fugiat omnis aperiam quia est dignissimos adipisci quod temporibus cupiditate ut facere recusandae nostrum provident eum. Inventore officia vitae iure, quam maiores magni nesciunt quis doloremque ipsa quasi porro fugit est dolore consequuntur aut quibusdam dolorem eum explicabo alias pariatur veniam! Ad, pariatur molestiae! Facilis, minus! Asperiores culpa laborum enim assumenda odio suscipit incidunt ipsum ipsa. Sint tempora exercitationem ad laudantium neque sunt quam reprehenderit corrupti sapiente perferendis eos quibusdam.</div>}
-                       
                     </div>
                     <div className='mini_containerOfUPI'>
                         <div className='Add_New_UPI_ID'>
@@ -87,22 +145,45 @@ const Payment = () => {
                                 <div className='NewUPI' style={{ color: "#3d4046" }}>Netbanking</div>
                                 <div className='registeredUPI'>Select from a list of banks</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState(!arrowState)}>
-                                <AddIcon style={{ fontSize: "30px" }} />
+                            <div className='arrowDown' onClick={() => setArrowState2(!arrowState2)}>
+                                {arrowState2 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
                         </div>
+                        {arrowState2 &&
+                            <div className='Add_New_UPI_ID Wallet'>
+                                <p>This instrument has low success,use UPI or Cards for better experience <span style={{ color: "red" }}>(Unavailable)</span></p>
+                            </div>
+                        }
+
                     </div>
                     <div className='mini_containerOfUPI'>
                         <div className='Add_New_UPI_ID'>
                             <div className='AddIcon'><CurrencyRupeeIcon style={{ color: "#3d4046", fontSize: "20px" }} /></div>
                             <div className='UPI_Number'>
-                                <div className='NewUPI' style={{ color: "#3d4046" }}>Pay on Delivery</div>
-                                <div className='registeredUPI'>Pay in cash or pay online.</div>
+                                <div className='NewUPI' style={{ color: "#3d4046" }}>COD</div>
+                                <div className='registeredUPI'>Cash on Delivery</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState(!arrowState)}>
-                                <AddIcon style={{ fontSize: "30px" }} />
+                            <div className='arrowDown' onClick={() => setArrowState3(!arrowState3)}>
+                                {arrowState3 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
                         </div>
+                        {arrowState3 &&
+                            <div className='Add_New_UPI_ID Wallet'>
+                                <input
+                                    readOnly
+                                    value={Math.floor(Math.random()*1000)}
+                                    style={{width:"80px",color:"green",fontSize:"25px"}}
+                                />
+                                <input
+                                type="text"
+                                //value={obj.login &&obj.userName}
+                                placeholder="Enter the characters"
+                                name="username"
+                                required
+                                autoComplete="off"
+                              />
+                              <Button style={{backgroundColor:"#fb641b"}}>Confirm Order</Button>
+                            </div>}
                     </div>
 
                 </div>
