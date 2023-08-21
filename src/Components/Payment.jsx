@@ -12,6 +12,9 @@ import Amazon from '../Images/Amazon.jpg'
 import PhonePay from '../Images/PhonePe.jpg'
 import PaytmPay from '../Images/Paytm.jpg'
 import Mobikwik from '../Images/Mobikwik.jpg'
+import RefreshIcon from '@mui/icons-material/Refresh';
+import { NavLink } from 'react-router-dom';
+
 
 const Payment = () => {
     const [arrowState1, setArrowState1] = useState(false);
@@ -21,7 +24,40 @@ const Payment = () => {
     const [phonePe, setPhonePe] = useState(false)
     const [googlePay, setGooglePay] = useState(false)
     const [UPI, setUPI] = useState(false)
+    const [randomVal, setRandomVal] = useState(Math.floor(Math.random() * 1000))
+    const [inputVal, setInputVal] = useState("");
 
+    const randomFun = () => {
+        setRandomVal(Math.floor(Math.random() * 1000))
+    }
+    const confirmOrder = () => {
+        // console.log(typeof inputVal)
+        // console.log(typeof randomVal)
+        debugger
+        if (inputVal === "") {
+            alert("Please enter value")
+        } else if (Number(inputVal) === randomVal) {
+            alert("Confirm Order")
+        } else {
+            alert("Please enter the captha again------")
+        }
+        setInputVal("")
+    }
+    const arrow1 = () => {
+        setArrowState1(!arrowState1)
+        setArrowState2(false)
+        setArrowState3(false)
+    }
+    const arrow2 = () => {
+        setArrowState1(false)
+        setArrowState2(!arrowState2)
+        setArrowState3(false)
+    }
+    const arrow3 = () => {
+        setArrowState1(false)
+        setArrowState2(false)
+        setArrowState3(!arrowState3)
+    }
     const Paytm = () => {
         setPaytm(true)
         setGooglePay(false)
@@ -51,7 +87,7 @@ const Payment = () => {
         <div className='main_payment container'>
             <div className='payment_options'>
                 <div className='arrowBack_icon'>
-                    <ArrowBackIcon style={{ fontSize: "25px" }} />
+                    <NavLink to="/summary" style={{color:"gray"}}><ArrowBackIcon style={{ fontSize: "25px" }} title=""/></NavLink>
                 </div>
                 <div className='price_payment'>
                     <div><h2>Payment Options</h2></div>
@@ -103,7 +139,7 @@ const Payment = () => {
                                 <div className='NewUPI' style={{ color: "#3d4046" }}>Wallets</div>
                                 <div className='registeredUPI'>Paytm,PhonePe,Amazon Pay & more</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState1(!arrowState1)}>
+                            <div className='arrowDown' onClick={arrow1}>
                                 {arrowState1 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
                         </div>
@@ -145,7 +181,7 @@ const Payment = () => {
                                 <div className='NewUPI' style={{ color: "#3d4046" }}>Netbanking</div>
                                 <div className='registeredUPI'>Select from a list of banks</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState2(!arrowState2)}>
+                            <div className='arrowDown' onClick={arrow2}>
                                 {arrowState2 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
                         </div>
@@ -163,7 +199,7 @@ const Payment = () => {
                                 <div className='NewUPI' style={{ color: "#3d4046" }}>COD</div>
                                 <div className='registeredUPI'>Cash on Delivery</div>
                             </div>
-                            <div className='arrowDown' onClick={() => setArrowState3(!arrowState3)}>
+                            <div className='arrowDown' onClick={arrow3}>
                                 {arrowState3 ? <RemoveIcon style={{ fontSize: "30px", }} /> : <AddIcon style={{ fontSize: "30px", }} />}
                             </div>
                         </div>
@@ -171,18 +207,21 @@ const Payment = () => {
                             <div className='Add_New_UPI_ID Wallet'>
                                 <input
                                     readOnly
-                                    value={Math.floor(Math.random()*1000)}
-                                    style={{width:"80px",color:"green",fontSize:"25px"}}
+                                    value={randomVal}
+                                    style={{ width: "80px", color: "green", fontSize: "25px" }}
                                 />
+                                <Button onClick={randomFun} style={{ backgroundColor: "white" }}><RefreshIcon style={{ fontSize: "30px", color: "#1976d2" }} /></Button>
+
                                 <input
-                                type="text"
-                                //value={obj.login &&obj.userName}
-                                placeholder="Enter the characters"
-                                name="username"
-                                required
-                                autoComplete="off"
-                              />
-                              <Button style={{backgroundColor:"#fb641b"}}>Confirm Order</Button>
+                                    type="text"
+                                    value={inputVal}
+                                    onChange={(e) => setInputVal(e.target.value)}
+                                    placeholder="Enter the characters"
+                                    name="username"
+                                    required
+                                    autoComplete="off"
+                                />
+                                <Button style={{ backgroundColor: "#fb641b" }} onClick={confirmOrder}>Confirm Order</Button>
                             </div>}
                     </div>
 

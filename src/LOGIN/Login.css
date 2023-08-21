@@ -9,8 +9,8 @@
 }
 
 .LoginCss:hover{
-    border-radius: 35px;
-    box-shadow: 10px 10px #adadad;
+    border-radius: 30px;
+    box-shadow: 10px 0px #adadad;
 }
 .main{
     /* margin: 100px; */
@@ -32,7 +32,7 @@
 .input_feild input{
     width:15pc
 }
-a.active_class{
+/* a.active_class{
     color: blue;
     border-bottom: 1px solid red;
-}
+} */

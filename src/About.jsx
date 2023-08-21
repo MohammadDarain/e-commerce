@@ -1,7 +1,7 @@
 // import React, { useContext } from 'react'
 import HeroSection from "./Components/HeroSection";
 import {useProductContext } from "./Context/ProductContext";
-
+import Footer from './Components/Footer'
 // import { AppContext } from './Context/ProductContext';
 const About = () => {
   // const {MyName} = useContext(AppContext);
@@ -15,6 +15,7 @@ const About = () => {
     <>
     {MyName}
     <HeroSection myData={data} />
+    <Footer/>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import Footer from './Components/Footer'
 const Contact = () => {
 
   const obj = {
@@ -40,6 +40,7 @@ const Contact = () => {
   `;
 
   return (
+    <>
     <Wrapper>
       <h2 className="common-heading">Contact page</h2>
 
@@ -81,7 +82,9 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </Wrapper>
+      </Wrapper>
+      <Footer/>
+    </>
   );
 };
 

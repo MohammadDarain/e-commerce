@@ -5,6 +5,7 @@ import { NavLink,useNavigate } from "react-router-dom";
 import { Button } from "./styles/Button";
 import PriceDetails from "./Components/PriceDetails";
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from './Components/Footer';
 
 const Cart = () => {
   const navegate = useNavigate();

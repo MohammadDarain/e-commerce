@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useCartContext } from "../Context/CartContext";
-
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from './../styles/Button'
 import PriceDetails from "./PriceDetails";
@@ -69,6 +68,7 @@ const Summary = () => {
           </div>
         </div>
       </Wrapper>
+    
     </div>
   );
 };

@@ -3,7 +3,7 @@ import HeroSection from './Components/HeroSection';
 import Trusted from './Components/Trusted';
 import Service from './Components/Service';
 import FeaturesProducts from './Components/FeaturesProducts';
-
+import Footer from './Components/Footer'
 
 export const Home = () => {
 
@@ -16,6 +16,7 @@ export const Home = () => {
     <FeaturesProducts/>
     <Service/>
     <Trusted/>
+    <Footer/>
     </>
   )
 }

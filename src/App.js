@@ -1,4 +1,4 @@
-import React, { useState,createContext } from 'react'
+import React, { useState, createContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './Home'
 import About from './About'
@@ -10,7 +10,6 @@ import ErrorPage from './ErrorPage'
 import { GlobalStyle } from './GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import Header from './Components/Header'
-import Footer from './Components/Footer'
 import SignUp from './SignUp/SignUp'
 import Login from './LOGIN/Login'
 import Shipping from './Components/Shipping'
@@ -19,7 +18,7 @@ import Payment from './Components/Payment'
 export const DataParentContext = createContext();
 const App = () => {
   const LoginStatus = localStorage.getItem("logIn")
-  const [LoginDetails,setLoginDetails] = useState()
+  const [LoginDetails, setLoginDetails] = useState()
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -50,24 +49,24 @@ const App = () => {
 
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-      <DataParentContext.Provider value={{LoginDetails,setLoginDetails}}>
-        <GlobalStyle />
-        <Header/>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/About' element={<About />} />
-          <Route path='/Products' element={<Products />} />
-          <Route path='/Contact' element={<Contact />} />
-          <Route path='/Cart' element={<Cart />} />
-          <Route path='/Login' element={<Login/>} />
-          <Route path='/SignUp' element={<SignUp/>} />
-          <Route path='/shipping' element={<Shipping/>} />
-          <Route path='/summary' element={<Summary/>} />
-         {LoginStatus && <Route path='/payment' element={<Payment/>} />}
-          <Route path='/SingleProduct/:id' element={<SingleProduct />} />
-          <Route path='/*' element={<ErrorPage />} />
-        </Routes>
-        <Footer/>
+        <DataParentContext.Provider value={{ LoginDetails, setLoginDetails }}>
+          <GlobalStyle />
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/About' element={<About />} />
+            <Route path='/Products' element={<Products />} />
+            <Route path='/Contact' element={<Contact />} />
+            <Route path='/Cart' element={<Cart />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/shipping' element={<Shipping />} />
+            <Route path='/summary' element={<Summary />} />
+            {LoginStatus && <Route path='/payment' element={<Payment />} />}
+            <Route path='/SingleProduct/:id' element={<SingleProduct />} />
+            <Route path='/*' element={<ErrorPage />} />
+          </Routes>
+         
         </DataParentContext.Provider>
       </BrowserRouter>
     </ThemeProvider>
@@ -81,5 +80,5 @@ const App = () => {
 //   }
 // }
 
-export default App ;
+export default App;
 
