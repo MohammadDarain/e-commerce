@@ -122,3 +122,10 @@
     margin-left: 10px;
    margin-bottom: -18px;
 }
+.UPI_Add{
+    display: flex;
+    justify-content: space-evenly
+}
+.UPI_Add input{
+   
+}

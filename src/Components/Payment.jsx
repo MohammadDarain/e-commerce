@@ -26,7 +26,8 @@ const Payment = () => {
     const [UPI, setUPI] = useState(false)
     const [randomVal, setRandomVal] = useState(Math.floor(Math.random() * 1000))
     const [inputVal, setInputVal] = useState("");
-
+    const [addNewCard, setAddNewCard] = useState(false);
+    const [UPI_id_input,setUPI_id_Input]= useState("")
     const randomFun = () => {
         setRandomVal(Math.floor(Math.random() * 1000))
     }
@@ -83,11 +84,20 @@ const Payment = () => {
         setUPI(true)
     }
 
+    const payPaymentWithUPI=()=>{
+        if(UPI_id_input===""){
+            alert("Please enter UPI ID")
+        }else{
+            alert("Payment Succesfull")
+            setUPI_id_Input("")
+        }
+    }
+
     return (
         <div className='main_payment container'>
             <div className='payment_options'>
                 <div className='arrowBack_icon'>
-                    <NavLink to="/summary" style={{color:"gray"}}><ArrowBackIcon style={{ fontSize: "25px" }} title=""/></NavLink>
+                    <NavLink to="/summary" style={{ color: "gray" }}><ArrowBackIcon style={{ fontSize: "25px" }} title="" /></NavLink>
                 </div>
                 <div className='price_payment'>
                     <div><h2>Payment Options</h2></div>
@@ -109,12 +119,25 @@ const Payment = () => {
                         UPI
                     </div>
                     <div className='mini_containerOfUPI'>
-                        <div className='Add_New_UPI_ID'>
-                            <div className='AddIcon'><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
+                        <div className='Add_New_UPI_ID' onClick={() => setAddNewCard(!addNewCard)}>
+                            <div className='AddIcon' style={{ cursor: "pointer" }}><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
                             <div className='UPI_Number'>
                                 <div className='NewUPI'>Add New UPI ID</div>
                                 <div className='registeredUPI'>You need to  have a registered UPI ID</div>
                             </div>
+                        </div>
+                        <div>
+                            {addNewCard && <div className='Add_New_UPI_ID UPI_Add'>
+                                <input
+                                    type="number"
+                                    placeholder="Enter UPI ID"
+                                    autoComplete="off"
+                                    value={UPI_id_input}
+                                    required
+                                    onChange={(e)=>setUPI_id_Input(e.target.value)}
+                                />
+                                <Button onClick={payPaymentWithUPI} style={{backgroundColor:"#60b246"}}>Pay &#8377;14150 </Button>
+                            </div>}
                         </div>
                     </div>
                     <div className='UPI'>
