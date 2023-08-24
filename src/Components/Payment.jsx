@@ -12,33 +12,62 @@ import Amazon from '../Images/Amazon.jpg'
 import PhonePay from '../Images/PhonePe.jpg'
 import PaytmPay from '../Images/Paytm.jpg'
 import Mobikwik from '../Images/Mobikwik.jpg'
+import { toast } from 'react-toastify';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { NavLink } from 'react-router-dom';
-
+import { useCartContext } from '../Context/CartContext';
+import FormatPrice from '../Helper/FormatePrice';
+import Receipt from './Receipt';
 
 const Payment = () => {
+    const date = new Date(new Date().getTime() + (5 * 24 * 60 * 60 * 1000))
+    const addressLocalStorage = JSON.parse(localStorage.getItem("form"));
+    // console.log("address",addressLocalStorage)
+
+    const { total_amount, total_item, shipping_fee } = useCartContext();
+    const [receipt, SetReceipt] = useState(false);
     const [arrowState1, setArrowState1] = useState(false);
     const [arrowState2, setArrowState2] = useState(false);
     const [arrowState3, setArrowState3] = useState(false);
     const [paytm, setPaytm] = useState(false)
     const [phonePe, setPhonePe] = useState(false)
     const [googlePay, setGooglePay] = useState(false)
-    const [UPI, setUPI] = useState(false)
+    const [amazon, setAmazon] = useState(false)
     const [randomVal, setRandomVal] = useState(Math.floor(Math.random() * 1000))
     const [inputVal, setInputVal] = useState("");
     const [addNewCard, setAddNewCard] = useState(false);
-    const [UPI_id_input,setUPI_id_Input]= useState("")
+    const [UPI_id_input, setAmazon_id_Input] = useState("");
+    const [debitAndCreditStatus, setDebitAndCreditStatus] = useState(false);
+    const [debitCardForm, setDebitCardForm] = useState({
+        cardNumber: "",
+        cvvNumber: "",
+        date: "",
+    });
+    const [debitInputs, setDebitInputs] = useState([]);
+
     const randomFun = () => {
         setRandomVal(Math.floor(Math.random() * 1000))
     }
     const confirmOrder = () => {
-        // console.log(typeof inputVal)
-        // console.log(typeof randomVal)
-        debugger
+
+        //debugger
         if (inputVal === "") {
             alert("Please enter value")
         } else if (Number(inputVal) === randomVal) {
-            alert("Confirm Order")
+            toast.success("Payment Successfull with COD", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            
+            setTimeout(() => {
+                SetReceipt(true)
+            }, 3000);
         } else {
             alert("Please enter the captha again------")
         }
@@ -63,36 +92,174 @@ const Payment = () => {
         setPaytm(true)
         setGooglePay(false)
         setPhonePe(false)
-        setUPI(false)
+        setAmazon(false)
+       
     }
     const PhonePe = () => {
         setPaytm(false)
         setPhonePe(true)
         setGooglePay(false)
-        setUPI(false)
+        setAmazon(false)
+       
+        
     }
     const GooglePay = () => {
         setPaytm(false)
         setGooglePay(true)
         setPhonePe(false)
-        setUPI(false)
+        setAmazon(false)
+        
     }
     const UPI_ID = () => {
         setPaytm(false)
         setGooglePay(false)
         setPhonePe(false)
-        setUPI(true)
+        setAmazon(true)
+        
     }
 
-    const payPaymentWithUPI=()=>{
-        if(UPI_id_input===""){
+    const payPaymentWithUPI = () => {
+        if (UPI_id_input === "") {
             alert("Please enter UPI ID")
-        }else{
-            alert("Payment Succesfull")
-            setUPI_id_Input("")
+        } else {
+            toast.success("Payment Successfull with UPI ID", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setAmazon_id_Input("")
+            setTimeout(() => {
+                SetReceipt(true)
+            }, 3000);
         }
     }
+    const payWithAmazon = ()=>{
+        toast.success("Payment Successfull with Amazon Pay", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        setTimeout(() => {
+            SetReceipt(true)
+        }, 3000);
+    }
+    const PayWithPaytm = ()=>{
+        toast.success("Payment Successfull with Paytm", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        setTimeout(() => {
+            SetReceipt(true)
+        }, 3000);
+    }
+    const payWithGooglePay = ()=>{
+        toast.success("Payment Successfull with mobikwik Wallet", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        setTimeout(() => {
+            SetReceipt(true)
+        }, 3000);
+    }
+    const PayWithPhonePe = ()=>{
+        toast.success("Payment Successfull with PhonePe", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        setTimeout(() => {
+            SetReceipt(true)
+        }, 3000);
+    }
 
+    const debitCardFunction = () => {
+         const CVV = /^[0-9]{3,4}$/;
+        const { cvvNumber,date, cardNumber } = debitCardForm
+        debugger
+        if (cardNumber === "" || cvvNumber === "" || date==="") {
+            toast.error("Please Enter Card Details ", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else if (cardNumber.length !== 16) {
+            toast.error("Please enter 16 digit CardNumber", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (!cvvNumber.match(CVV)) {
+            toast.error("Please enter correct CVV number", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else {
+            setDebitInputs([...debitInputs, debitCardForm])
+            toast.success("Payment Successfull with cards", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTimeout(() => {
+                SetReceipt(true)
+            }, 3000);
+            setDebitCardForm({
+                cardNumber: "",
+                cvvNumber: "",
+                date: "",
+            })
+        }
+    }
     return (
         <div className='main_payment container'>
             <div className='payment_options'>
@@ -101,7 +268,7 @@ const Payment = () => {
                 </div>
                 <div className='price_payment'>
                     <div><h2>Payment Options</h2></div>
-                    <div className='item_price_details'><h3>1 item . Total: &#8377;14150</h3></div>
+                    <div className='item_price_details'><h3>{total_item} item . Total: <FormatPrice price={shipping_fee + total_amount} /></h3></div>
                 </div>
             </div>
             <div className='mini_payment'>
@@ -110,8 +277,8 @@ const Payment = () => {
                         <img src={wired} alt="wiredlogo" style={{ width: "30px" }} />
                     </div>
                     <div className='address_time'>
-                        <div className='date'>Delivery in | Sun Aug 20 2023</div>
-                        <div className='address'><h3>Home |  Lucknow, Uttar Pradesh, India</h3></div>
+                        <div className='date'>Delivery in | {date.toDateString()}</div>
+                        <div className='address'><h3>Home |  {addressLocalStorage.address}</h3></div>
                     </div>
                 </div>
                 <div className='All_payment_option'>
@@ -133,10 +300,9 @@ const Payment = () => {
                                     placeholder="Enter UPI ID"
                                     autoComplete="off"
                                     value={UPI_id_input}
-                                    required
-                                    onChange={(e)=>setUPI_id_Input(e.target.value)}
+                                    onChange={(e) => setAmazon_id_Input(e.target.value)}
                                 />
-                                <Button onClick={payPaymentWithUPI} style={{backgroundColor:"#60b246"}}>Pay &#8377;14150 </Button>
+                                <Button onClick={payPaymentWithUPI} style={{ backgroundColor: "#60b246" }}>Pay <FormatPrice price={shipping_fee + total_amount} /></Button>
                             </div>}
                         </div>
                     </div>
@@ -144,12 +310,43 @@ const Payment = () => {
                         Credit & Debit cards
                     </div>
                     <div className='mini_containerOfUPI'>
-                        <div className='Add_New_UPI_ID'>
-                            <div className='AddIcon'><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
+                        <div className='Add_New_UPI_ID' onClick={() => setDebitAndCreditStatus(!debitAndCreditStatus)}>
+                            <div className='AddIcon' style={{ cursor: "pointer" }}><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
                             <div className='UPI_Number'>
                                 <div className='NewUPI'>Add New Cards</div>
                                 <div className='registeredUPI'>Save and Pay via Cards.</div>
                             </div>
+                        </div>
+                        <div>
+                            {debitAndCreditStatus && <div className='Add_New_UPI_ID UPI_Add '>
+                                <div >
+                                    <input style={{ width: "250px", padding: "20px" }}
+                                        type="text"
+                                        placeholder="Card Number"
+                                        name='cardNumber'
+                                        autoComplete="off"
+                                        value={debitCardForm.cardNumber}
+                                        onChange={(e) => setDebitCardForm({...debitCardForm,cardNumber: e.target.value })}
+                                    />
+                                    <div>
+                                        <input style={{ width: "180px", padding: "15px" }}
+                                            type="date"
+                                            value={debitCardForm.date}
+                                            onChange={(e) => setDebitCardForm({ ...debitCardForm, date: e.target.value })}
+                                        />
+                                        <input style={{ width: "70px", padding: "16px" }}
+                                            type="text"
+
+                                            placeholder="CVV"
+                                            autoComplete="off"
+                                            value={debitCardForm.cvvNumber}
+                                            onChange={(e) => setDebitCardForm({ ...debitCardForm, cvvNumber: e.target.value })}
+                                        />
+                                    </div>
+
+                                    <Button onClick={debitCardFunction} style={{ backgroundColor: "#60b246", marginTop: "10px", width: "250px" }}>Pay <FormatPrice price={shipping_fee + total_amount} /></Button>
+                                </div>
+                            </div>}
                         </div>
                     </div>
                     <div className='UPI'>
@@ -189,10 +386,10 @@ const Payment = () => {
                                 </div>
                             }
                             {arrowState1 && <div className='Add_New_UPI_ID Wallet'>
-                                {UPI && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Amazon} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
-                                {paytm && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PaytmPay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
-                                {phonePe && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PhonePay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
-                                {googlePay && <Button style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Mobikwik} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with &#8377;14150 </Button>}
+                                {amazon && <Button  onClick={payWithAmazon} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Amazon} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }}  />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {paytm && <Button  onClick={PayWithPaytm} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PaytmPay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }}  />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {phonePe && <Button onClick={PayWithPhonePe}  style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PhonePay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {googlePay && <Button  onClick={payWithGooglePay} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Mobikwik} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
                             </div>}
                         </div>
 
@@ -227,11 +424,12 @@ const Payment = () => {
                             </div>
                         </div>
                         {arrowState3 &&
-                            <div className='Add_New_UPI_ID Wallet'>
+                            <div className='Add_New_UPI_ID Wallet Cod'>
                                 <input
                                     readOnly
                                     value={randomVal}
-                                    style={{ width: "80px", color: "green", fontSize: "25px" }}
+                                    className='readOnly'
+                                    style={{ width: "82px", color: "green", fontSize: "25px" }}
                                 />
                                 <Button onClick={randomFun} style={{ backgroundColor: "white" }}><RefreshIcon style={{ fontSize: "30px", color: "#1976d2" }} /></Button>
 
@@ -239,13 +437,15 @@ const Payment = () => {
                                     type="text"
                                     value={inputVal}
                                     onChange={(e) => setInputVal(e.target.value)}
-                                    placeholder="Enter the characters"
+                                    placeholder="captcha"
                                     name="username"
-                                    required
                                     autoComplete="off"
+                                    className='capatcha' 
                                 />
                                 <Button style={{ backgroundColor: "#fb641b" }} onClick={confirmOrder}>Confirm Order</Button>
                             </div>}
+                            
+                            <Receipt receipt={receipt} SetReceipt={SetReceipt}/>
                     </div>
 
                 </div>

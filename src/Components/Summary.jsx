@@ -36,7 +36,6 @@ const Summary = () => {
         progress: undefined,
         theme: "light",
       });
-
     }
   }
 

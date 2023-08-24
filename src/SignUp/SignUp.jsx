@@ -96,7 +96,22 @@ const SignUp = () => {
         progress: undefined,
         theme: "light",
       })
-    } else {
+    }else if (localStorage.getItem("email")===email) {
+      toast.error('email  already exists', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      setUsername("");
+      setEmiail("");
+      setpassword("");
+    }
+     else {
       localStorage.setItem("userName", userName)
       localStorage.setItem("email", email)
       localStorage.setItem("password", password)

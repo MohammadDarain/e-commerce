@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PriceDetails from './PriceDetails'
 import './Shipping.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Button } from "../styles/Button";
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Shipping = () => {
     const [inputs, setInputs] = useState([]);
 
     const PlaceOrder = () => {
-        debugger;
+        //debugger;
         if (form.username === "" || form.address === "" || form.landmark === "" || form.pincode === "" || form.number === "") {
             toast.error("All  input field are  mandatory ... ", {
                 position: "top-right",
@@ -67,7 +67,9 @@ const Shipping = () => {
         }
         else {
             setInputs([...inputs, form])
-            console.log("inputs", inputs, form)
+            //console.log("inputs", inputs, form)
+            localStorage.setItem('form', JSON.stringify(form));
+
             setForm({
                 username: "",
                 address: "",

@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../Context/CartContext";
 
 const SummaryCartItem = ({ id, name, image, color, price, amount }) => {
+  const date = new Date(new Date().getTime() + (5  * 24 * 60 * 60 * 1000))
   const { removeItem} = useCartContext();
 
  
@@ -34,7 +35,7 @@ const SummaryCartItem = ({ id, name, image, color, price, amount }) => {
       </div>
 
       {/* Quantity  */}
-      <p style={{color:"#bf0019"}} title="Aug 20 2023">Deliver by Sun Aug 20 2023 </p>
+      <p style={{color:"#bf0019"}} title="Aug 20 2023">{date.toDateString()}</p>
 
       {/* //Subtotal */}
       

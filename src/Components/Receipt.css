@@ -1,0 +1,53 @@
+.giftBox{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid #a8a9aa;
+    border-radius: 10px;
+}
+
+.buttonCross{
+    display: flex;
+    justify-content: end;
+    border-radius: 50%;
+    
+}
+.cancelIcon{
+    font-size: 40px;
+    color: 	#CD5C5C;
+}
+.faGiftIcon{
+   padding: 10px; 
+}
+.OrderPlaceHeading{
+    padding: 20px;
+    color: #60b246;
+}
+.deliveryHeading{
+    text-align: center;
+    margin: 15px;
+    color: #f56a11;
+    font-size: 20px;
+}
+.mainReceipt{
+    margin: 45px;
+    text-transform: capitalize;
+}
+.giftBoxAddress{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #a8a9aa;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+
+.giftBoxAddress h3 span{
+    color: #8d8f91;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainReceipt{
+        margin: 10px;
+    }
+  }
