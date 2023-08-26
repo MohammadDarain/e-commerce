@@ -9,7 +9,6 @@ import { Button } from "../styles/Button";
 import { DataParentContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
 
-
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   const Context = useContext(DataParentContext);
@@ -24,7 +23,7 @@ const Nav = () => {
 
   function signOut() {
     const confirm = window.confirm("Are you sure want to log out ?")
-    if(confirm){
+    if (confirm) {
       localStorage.setItem("logIn", "")
       //localStorage.setItem("userName","")
       toast.success("Log Out Successfully ...", {
@@ -37,18 +36,18 @@ const Nav = () => {
         progress: undefined,
         theme: "light",
       });
-      
+
       Context.setLoginDetails([])
-      
+
       navegate('/Login')
       //alert("Log Out")
     }
   }
-  useEffect(() => {
-    if (loginCheck) {
-      
-    }
-  }, [loginCheck])
+  // useEffect(() => {
+  //   if (loginCheck) {
+
+  //   }
+  // }, [loginCheck])
   const { total_item } = useCartContext();
 
 
@@ -221,11 +220,10 @@ const Nav = () => {
       }
 
       <Nav>
-
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
             <li>
-              <NavLink  
+              <NavLink
                 to="/"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -233,7 +231,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink  
+              <NavLink
                 to="/products"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -241,7 +239,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink  
+              <NavLink
                 to="/about"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -249,7 +247,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink  
+              <NavLink
                 to="/contact"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
@@ -258,7 +256,7 @@ const Nav = () => {
             </li>
 
             <li>
-              <NavLink  to="/cart"  className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+              <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
                 <FiShoppingCart className="cart-trolley" title="Cart" />
                 <span className="cart-total--item"> {total_item} </span>
               </NavLink>

@@ -1,13 +1,28 @@
+import {toast } from 'react-toastify';
 
 const CartReducer = (state, action) => {
     if (action.type === "ADD_TO_CART") {
+        debugger
         let { id, color, amount, product } = action.payload;
-        //console.log(product)
+        //console.log("pro",product)
+        //alert("pro")
+
+        toast('🦄 Added Successfully to Cart', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
 
         // tackle the existing products
         const existingProduct = state.cart.find((curElem) => curElem.id === id + color)
-        console.log(existingProduct)
         if (existingProduct) {
+            //console.log(existingProduct)
+            //alert("exis")
             let updateProduct = state.cart.map((curElem) => {
                 if (curElem.id === id + color) {
                     let newAmount = curElem.amount + amount;
@@ -27,6 +42,7 @@ const CartReducer = (state, action) => {
                 cart: updateProduct
             }
         } else {
+            
             let cartProduct;
             cartProduct = {
                 id: id + color,
@@ -90,7 +106,7 @@ const CartReducer = (state, action) => {
         }
     }
     if (action.type === "CART_TOTAL_ITEM") {
-        console.log("cart",state.cart);
+        // console.log("cart", state.cart);
         let updatedItemVal = state.cart.reduce((initial, curElem) => {
             return initial + curElem.amount
         }, 0)
@@ -102,7 +118,7 @@ const CartReducer = (state, action) => {
     }
     if (action.type === "CART_TOTAL_PRICE") {
         let totalPrice = state.cart.reduce((initial, curElem) => {
-            return initial + (curElem.amount*curElem.price)
+            return initial + (curElem.amount * curElem.price)
         }, 0)
         console.log(totalPrice)
         return {
@@ -110,10 +126,11 @@ const CartReducer = (state, action) => {
             total_amount: totalPrice,
         }
     }
-    
+
     if (action.type === "REMOVE_ITEM") {
         let { id } = action.payload
         //console.log("id", id);
+
 
         // let updatedCart = state.cart.splice(action.payload, 1)
         // console.log("up", updatedCart);
