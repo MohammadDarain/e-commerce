@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from '../Reducer/CartReducer';
+import {toast } from 'react-toastify';
 const CartContext = createContext();
 
 
@@ -13,7 +14,7 @@ const CartContext = createContext();
 // }
 const initialState = {
     // cart: [],
-    cart: JSON.parse(localStorage.getItem("cartDataWithLocal")) || []  ,
+    cart: JSON.parse(localStorage.getItem("cartDataWithLocal")) || [],
     total_item: "",
     total_amount: "",
     shipping_fee: 5000
@@ -21,12 +22,18 @@ const initialState = {
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+   
     const addToCart = (id, color, amount, product) => {
-
-        dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } })
+        const LogInStatus = localStorage.getItem("logIn");
+        debugger
+        if (LogInStatus) {
+            dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } })
+        } else {
+            alert("Please Login First");
+        }
     }
 
- // increment and decrement the product
+    // increment and decrement the product
     const setDecrease = (id) => {
         dispatch({ type: "SET_DECREMENT", payload: id });
     };

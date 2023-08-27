@@ -1,4 +1,4 @@
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const CartReducer = (state, action) => {
     if (action.type === "ADD_TO_CART") {
@@ -7,22 +7,19 @@ const CartReducer = (state, action) => {
         //console.log("pro",product)
         //alert("pro")
 
-        toast('🦄 Added Successfully to Cart', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
-
         // tackle the existing products
         const existingProduct = state.cart.find((curElem) => curElem.id === id + color)
         if (existingProduct) {
-            //console.log(existingProduct)
-            //alert("exis")
+            toast('🦄 Product Already added in Your cart  only increase Quantity ', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             let updateProduct = state.cart.map((curElem) => {
                 if (curElem.id === id + color) {
                     let newAmount = curElem.amount + amount;
@@ -42,8 +39,18 @@ const CartReducer = (state, action) => {
                 cart: updateProduct
             }
         } else {
-            
+
             let cartProduct;
+            toast('🦄 Added Successfully to Cart', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             cartProduct = {
                 id: id + color,
                 name: product.name,

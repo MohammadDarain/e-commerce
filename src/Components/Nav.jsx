@@ -21,6 +21,15 @@ const Nav = () => {
   console.log(loginCheck, "loginCheck");
   console.log(userName, "userName.....");
 
+  const totalItem = () => {
+    debugger
+    if (loginCheck) {
+      navegate("/cart")
+    } else {
+      alert("Please Login First")
+    }
+  }
+
   function signOut() {
     const confirm = window.confirm("Are you sure want to log out ?")
     if (confirm) {
@@ -255,10 +264,10 @@ const Nav = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+            <li onClick={totalItem}>
+              <NavLink className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
                 <FiShoppingCart className="cart-trolley" title="Cart" />
-                <span className="cart-total--item"> {total_item} </span>
+                {loginCheck && <span className="cart-total--item"> {total_item} </span>}
               </NavLink>
             </li>
             <li onClick={() => setMenuIcon(false)}>
