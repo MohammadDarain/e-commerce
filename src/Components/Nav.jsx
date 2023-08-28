@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from '../Context/CartContext';
-import '../LOGIN/Login.css';
+import '.././LOGIN/Login.css';
 import { Button } from "../styles/Button";
 import { DataParentContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
@@ -22,7 +22,7 @@ const Nav = () => {
   console.log(userName, "userName.....");
 
   const totalItem = () => {
-    debugger
+    // debugger
     if (loginCheck) {
       navegate("/cart")
     } else {
@@ -34,7 +34,6 @@ const Nav = () => {
     const confirm = window.confirm("Are you sure want to log out ?")
     if (confirm) {
       localStorage.setItem("logIn", "")
-      //localStorage.setItem("userName","")
       toast.success("Log Out Successfully ...", {
         position: "top-right",
         autoClose: 5000,
@@ -47,16 +46,10 @@ const Nav = () => {
       });
 
       Context.setLoginDetails([])
-
-      navegate('/Login')
-      //alert("Log Out")
+      
     }
   }
-  // useEffect(() => {
-  //   if (loginCheck) {
-
-  //   }
-  // }, [loginCheck])
+  
   const { total_item } = useCartContext();
 
 

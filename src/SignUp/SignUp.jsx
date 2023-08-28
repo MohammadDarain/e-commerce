@@ -1,13 +1,13 @@
 
 import { NavLink } from "react-router-dom";
-import '../LOGIN/Login.css';
+import '.././LOGIN/Login.css'
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
-  const navegate = useNavigate();
+  //const navegate = useNavigate();
   const [userName, setUsername] = useState('');
   const [email, setEmiail] = useState("");
   const [password, setpassword] = useState("");

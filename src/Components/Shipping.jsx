@@ -17,9 +17,9 @@ const Shipping = () => {
     const [inputs, setInputs] = useState([]);
 
     const PlaceOrder = () => {
-        //debugger;
+        debugger;
         if (form.username === "" || form.address === "" || form.landmark === "" || form.pincode === "" || form.number === "") {
-            toast.error("All  input field are  mandatory ... ", {
+            toast.error("All  input field are  mandatory  ", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -30,7 +30,7 @@ const Shipping = () => {
                 theme: "light",
             });
         }
-        else if (form.number.length < 10) {
+        else if (form.number.length !== 10) {
             toast.error("Please use valid mobile number", {
                 position: "top-right",
                 autoClose: 5000,
@@ -53,7 +53,7 @@ const Shipping = () => {
                 theme: "light",
             });
         }
-        else if (form.pincode.length < 6) {
+        else if (form.pincode.length !== 6) {
             toast.error("Allows 6 digits  pincode", {
                 position: "top-right",
                 autoClose: 5000,

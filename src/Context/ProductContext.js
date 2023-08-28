@@ -15,7 +15,6 @@ const initialState = {
     isSingleLoading: false,
     singleProduct: {},
 }
-
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 

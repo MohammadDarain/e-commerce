@@ -52,7 +52,16 @@ const Payment = () => {
 
         //debugger
         if (inputVal === "") {
-            alert("Please enter value")
+            toast.error("Please enter captcha value", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         } else if (Number(inputVal) === randomVal) {
             toast.success("Payment Successfull with COD", {
                 position: "top-right",
@@ -120,7 +129,16 @@ const Payment = () => {
 
     const payPaymentWithUPI = () => {
         if (UPI_id_input === "") {
-            alert("Please enter UPI ID")
+            toast.error("Please Enter UPI ID", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         } else {
             toast.success("Payment Successfull with UPI ID", {
                 position: "top-right",
@@ -200,7 +218,6 @@ const Payment = () => {
     }
 
     const debitCardFunction = () => {
-         const CVV = /^[0-9]{3,4}$/;
         const { cvvNumber,date, cardNumber } = debitCardForm
         debugger
         if (cardNumber === "" || cvvNumber === "" || date==="") {
@@ -226,7 +243,7 @@ const Payment = () => {
                 progress: undefined,
                 theme: "light",
             });
-        } else if (!cvvNumber.match(CVV)) {
+        } else if (cvvNumber.length !==3) {
             toast.error("Please enter correct CVV number", {
                 position: "top-right",
                 autoClose: 5000,
