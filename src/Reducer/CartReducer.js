@@ -10,7 +10,7 @@ const CartReducer = (state, action) => {
         // tackle the existing products
         const existingProduct = state.cart.find((curElem) => curElem.id === id + color)
         if (existingProduct) {
-            toast('🦄 Product Already added in Your cart  only increase Quantity ', {
+            toast('🛒 Product Already added in Your cart  only increase Quantity ', {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -41,7 +41,7 @@ const CartReducer = (state, action) => {
         } else {
 
             let cartProduct;
-            toast('🦄Product Successfully Added', {
+            toast('🛒 Product Successfully Added', {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

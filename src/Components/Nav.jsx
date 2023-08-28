@@ -169,7 +169,7 @@ const Nav = () => {
         opacity: 0;
         transform: translateX(100%);
         /* transform-origin: top; */
-        transition: all 3s linear;
+        /*transition: all 3s linear;*/
       }
 
       .active .navbar-lists {
@@ -209,18 +209,6 @@ const Nav = () => {
 
   return (
     <>
-      {
-        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>🤹 Hi  {userName} <ToastContainer />  </h2> :
-
-          <p style={{ fontSize: "25px" }}>
-            <NavLink
-              to="/Login"
-              onClick={() => setMenuIcon(false)}>
-              <Button>Log In</Button>
-            </NavLink>
-          </p>
-      }
-
       <Nav>
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
@@ -284,6 +272,17 @@ const Nav = () => {
           </div>
         </div>
       </Nav>
+      {
+        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>🤹 Hi  {userName} <ToastContainer />  </h2> :
+
+          <p style={{ fontSize: "25px" }}>
+            <NavLink
+              to="/Login"
+              onClick={() => setMenuIcon(false)}>
+              <Button>Log In</Button>
+            </NavLink>
+          </p>
+      }
     </>
   );
 };
