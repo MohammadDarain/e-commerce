@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
@@ -46,10 +46,10 @@ const Nav = () => {
       });
 
       Context.setLoginDetails([])
-
+      
     }
   }
-
+  
   const { total_item } = useCartContext();
 
 
@@ -148,7 +148,9 @@ const Nav = () => {
         z-index: 9999;
       }
 
-     
+      .active .close-outline {
+        display: inline-block;
+      }
 
       .navbar-lists {
         width: 100vw;
@@ -162,12 +164,12 @@ const Nav = () => {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
+
         visibility: hidden;
         opacity: 0;
         transform: translateX(100%);
         /* transform-origin: top; */
-       /* transition: all 3s linear;*/
+        transition: all 3s linear;
       }
 
       .active .navbar-lists {
@@ -207,9 +209,18 @@ const Nav = () => {
 
   return (
     <>
-    <li onClick={() => setMenuIcon(false)}>
-    {loginCheck && <Button onClick={signOut}>Log Out</Button>}
-  </li>
+      {
+        loginCheck ? <h2 style={{ textTransform: "capitalize" }}>🤹 Hi  {userName} <ToastContainer />  </h2> :
+
+          <p style={{ fontSize: "25px" }}>
+            <NavLink
+              to="/Login"
+              onClick={() => setMenuIcon(false)}>
+              <Button>Log In</Button>
+            </NavLink>
+          </p>
+      }
+
       <Nav>
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
@@ -252,18 +263,10 @@ const Nav = () => {
                 {loginCheck && <span className="cart-total--item"> {total_item} </span>}
               </NavLink>
             </li>
-            
-            {
-              loginCheck ? <h2 style={{ textTransform: "capitalize" }}>🤹 Hi {userName} <ToastContainer />  </h2> :
-      
-                <p style={{ fontSize: "25px" }}>
-                  <NavLink
-                    to="/Login"
-                    onClick={() => setMenuIcon(false)}>
-                    <Button>Log In</Button>
-                  </NavLink>
-                </p>
-            }
+            <li onClick={() => setMenuIcon(false)}>
+              {loginCheck && <Button onClick={signOut}>Log Out</Button>}
+
+            </li>
           </ul>
 
           {/* two button for open and close of menu */}

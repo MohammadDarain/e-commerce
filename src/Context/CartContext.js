@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from '../Reducer/CartReducer';
-import {toast } from 'react-toastify';
+
 const CartContext = createContext();
 
 
@@ -25,7 +25,7 @@ const CartProvider = ({ children }) => {
    
     const addToCart = (id, color, amount, product) => {
         const LogInStatus = localStorage.getItem("logIn");
-        debugger
+        //debugger
         if (LogInStatus) {
             dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } })
         } else {
