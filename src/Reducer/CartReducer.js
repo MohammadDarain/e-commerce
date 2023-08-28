@@ -41,7 +41,7 @@ const CartReducer = (state, action) => {
         } else {
 
             let cartProduct;
-            toast('🦄Product Successfully Added to Cart', {
+            toast('🦄Product Successfully Added', {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

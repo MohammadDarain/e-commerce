@@ -48,6 +48,22 @@ const Payment = () => {
     const randomFun = () => {
         setRandomVal(Math.floor(Math.random() * 1000))
     }
+    const toggleUPI=()=>{
+        setAddNewCard(!addNewCard)
+        setDebitAndCreditStatus(false)
+        setArrowState1(false)
+        setArrowState2(false)
+        setArrowState3(false)
+    }
+    const toggleCredit=()=>{
+        setAddNewCard(false)
+        setDebitAndCreditStatus(!debitAndCreditStatus)
+        setArrowState1(false)
+        setArrowState2(false)
+        setArrowState3(false)
+    }
+
+
     const confirmOrder = () => {
 
         //debugger
@@ -86,22 +102,30 @@ const Payment = () => {
         setArrowState1(!arrowState1)
         setArrowState2(false)
         setArrowState3(false)
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
     const arrow2 = () => {
         setArrowState1(false)
         setArrowState2(!arrowState2)
         setArrowState3(false)
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
     const arrow3 = () => {
         setArrowState1(false)
         setArrowState2(false)
         setArrowState3(!arrowState3)
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
     const Paytm = () => {
         setPaytm(true)
         setGooglePay(false)
         setPhonePe(false)
         setAmazon(false)
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
        
     }
     const PhonePe = () => {
@@ -109,22 +133,24 @@ const Payment = () => {
         setPhonePe(true)
         setGooglePay(false)
         setAmazon(false)
-       
-        
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
     const GooglePay = () => {
         setPaytm(false)
         setGooglePay(true)
         setPhonePe(false)
         setAmazon(false)
-        
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
     const UPI_ID = () => {
         setPaytm(false)
         setGooglePay(false)
         setPhonePe(false)
         setAmazon(true)
-        
+        setAddNewCard(false)
+        setDebitAndCreditStatus(false)
     }
 
     const payPaymentWithUPI = () => {
@@ -303,7 +329,7 @@ const Payment = () => {
                         UPI
                     </div>
                     <div className='mini_containerOfUPI'>
-                        <div className='Add_New_UPI_ID' onClick={() => setAddNewCard(!addNewCard)}>
+                        <div className='Add_New_UPI_ID' onClick={toggleUPI}>
                             <div className='AddIcon' style={{ cursor: "pointer" }}><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
                             <div className='UPI_Number'>
                                 <div className='NewUPI'>Add New UPI ID</div>
@@ -327,7 +353,7 @@ const Payment = () => {
                         Credit & Debit cards
                     </div>
                     <div className='mini_containerOfUPI'>
-                        <div className='Add_New_UPI_ID' onClick={() => setDebitAndCreditStatus(!debitAndCreditStatus)}>
+                        <div className='Add_New_UPI_ID' onClick={toggleCredit}>
                             <div className='AddIcon' style={{ cursor: "pointer" }}><AddIcon style={{ color: "#f15700", fontSize: "20px" }} /></div>
                             <div className='UPI_Number'>
                                 <div className='NewUPI'>Add New Cards</div>

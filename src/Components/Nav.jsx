@@ -148,9 +148,7 @@ const Nav = () => {
         z-index: 9999;
       }
 
-      .active .close-outline {
-        display: inline-block;
-      }
+     
 
       .navbar-lists {
         width: 100vw;
@@ -164,12 +162,12 @@ const Nav = () => {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
+        
         visibility: hidden;
         opacity: 0;
         transform: translateX(100%);
         /* transform-origin: top; */
-        transition: all 3s linear;
+       /* transition: all 3s linear;*/
       }
 
       .active .navbar-lists {

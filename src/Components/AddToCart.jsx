@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import CartAmountToggle from './CartAmountToggle';
 import { Button } from '../styles/Button';
 import { useCartContext } from '../Context/CartContext';
+import { NavLink } from 'react-bootstrap';
 const AddToCart = ({ product }) => {
 
   const { addToCart } = useCartContext()
@@ -49,7 +50,7 @@ const AddToCart = ({ product }) => {
       </div>
       {/*Add to cart*/}
       <CartAmountToggle amount={amount} setIncrease={setIncrease} setDecrease={setDecrease} />
-
+          
       <Button className='btn' onClick={() => addToCart(id, color, amount, product)}>Add To Cart</Button>
 
     </Wrapper>
