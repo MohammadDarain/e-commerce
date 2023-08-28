@@ -8,8 +8,10 @@ import '.././LOGIN/Login.css';
 import { Button } from "../styles/Button";
 import { DataParentContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
+import Cart from "../Cart";
 
 const Nav = () => {
+  const { total_item,cart } = useCartContext();
   const [menuIcon, setMenuIcon] = useState();
   const Context = useContext(DataParentContext);
   const navegate = useNavigate();
@@ -50,9 +52,6 @@ const Nav = () => {
     }
   }
   
-  const { total_item } = useCartContext();
-
-
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -248,7 +247,7 @@ const Nav = () => {
             <li onClick={totalItem}>
               <NavLink className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
                 <FiShoppingCart className="cart-trolley" title="Cart" />
-                {loginCheck && <span className="cart-total--item"> {total_item} </span>}
+                {loginCheck && <span className="cart-total--item"> {cart.length} </span>}
               </NavLink>
             </li>
             <li onClick={() => setMenuIcon(false)}>

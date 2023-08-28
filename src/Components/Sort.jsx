@@ -38,9 +38,9 @@ const Sort = () => {
           <option value="#" disabled></option>
           <option value="lowest">Price(lowest)</option>
           <option value="#" disabled></option>
-          <option value="a-z">Price(a-z)</option>
+          <option value="a-z">Name(a-z)</option>
           <option value="#" disabled></option>
-          <option value="z-a">Price(z-a)</option>
+          <option value="z-a">Name(z-a)</option>
         </select>
       </div>
     </Wrapper>
