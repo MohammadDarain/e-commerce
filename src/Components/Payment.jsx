@@ -44,18 +44,36 @@ const Payment = () => {
         date: "",
     });
     const [debitInputs, setDebitInputs] = useState([]);
+     const CardPattern = "[0-9\s]{13,19}"
+
+    const debitCardNumberFun = (e) => {
+        let inputTargetValue = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+        let formattedCardNumber = inputTargetValue.slice(0, 4).concat(" ", inputTargetValue.slice(4, 8)).concat(" ", inputTargetValue.slice(8, 12)).concat(" ", inputTargetValue.slice(12, 16)).trim();
+        console.log(formattedCardNumber.length,"Len")
+        setDebitCardForm({ ...debitCardForm, cardNumber: formattedCardNumber })
+    }
+
+    const debitCard_CVV_Fun = (e) => {
+        let inputTargetValue = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+        setDebitCardForm({ ...debitCardForm, cvvNumber: inputTargetValue })
+    }
+
+    const CodFun = (e) => {
+        let inputTargetValue = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+        setInputVal(inputTargetValue)
+    }
 
     const randomFun = () => {
         setRandomVal(Math.floor(Math.random() * 1000))
     }
-    const toggleUPI=()=>{
+    const toggleUPI = () => {
         setAddNewCard(!addNewCard)
         setDebitAndCreditStatus(false)
         setArrowState1(false)
         setArrowState2(false)
         setArrowState3(false)
     }
-    const toggleCredit=()=>{
+    const toggleCredit = () => {
         setAddNewCard(false)
         setDebitAndCreditStatus(!debitAndCreditStatus)
         setArrowState1(false)
@@ -89,7 +107,7 @@ const Payment = () => {
                 progress: undefined,
                 theme: "light",
             });
-            
+
             setTimeout(() => {
                 SetReceipt(true)
             }, 3000);
@@ -126,7 +144,7 @@ const Payment = () => {
         setAmazon(false)
         setAddNewCard(false)
         setDebitAndCreditStatus(false)
-       
+
     }
     const PhonePe = () => {
         setPaytm(false)
@@ -182,7 +200,7 @@ const Payment = () => {
             }, 3000);
         }
     }
-    const payWithAmazon = ()=>{
+    const payWithAmazon = () => {
         toast.success("Payment Successfull with Amazon Pay", {
             position: "top-right",
             autoClose: 5000,
@@ -197,7 +215,7 @@ const Payment = () => {
             SetReceipt(true)
         }, 3000);
     }
-    const PayWithPaytm = ()=>{
+    const PayWithPaytm = () => {
         toast.success("Payment Successfull with Paytm", {
             position: "top-right",
             autoClose: 5000,
@@ -212,7 +230,7 @@ const Payment = () => {
             SetReceipt(true)
         }, 3000);
     }
-    const payWithGooglePay = ()=>{
+    const payWithGooglePay = () => {
         toast.success("Payment Successfull with mobikwik Wallet", {
             position: "top-right",
             autoClose: 5000,
@@ -227,7 +245,7 @@ const Payment = () => {
             SetReceipt(true)
         }, 3000);
     }
-    const PayWithPhonePe = ()=>{
+    const PayWithPhonePe = () => {
         toast.success("Payment Successfull with PhonePe", {
             position: "top-right",
             autoClose: 5000,
@@ -244,9 +262,9 @@ const Payment = () => {
     }
 
     const debitCardFunction = () => {
-        const { cvvNumber,date, cardNumber } = debitCardForm
+        const { cvvNumber, date, cardNumber } = debitCardForm
         debugger
-        if (cardNumber === "" || cvvNumber === "" || date==="") {
+        if (cardNumber === "" || cvvNumber === "" || date === "") {
             toast.error("Please Enter Card Details ", {
                 position: "top-right",
                 autoClose: 5000,
@@ -258,7 +276,7 @@ const Payment = () => {
                 theme: "light",
             });
         }
-        else if (cardNumber.length !== 16) {
+        else if (cardNumber.length !== 19) {
             toast.error("Please enter 16 digit CardNumber", {
                 position: "top-right",
                 autoClose: 5000,
@@ -269,7 +287,7 @@ const Payment = () => {
                 progress: undefined,
                 theme: "light",
             });
-        } else if (cvvNumber.length !==3) {
+        } else if (cvvNumber.length !== 3) {
             toast.error("Please enter correct CVV number", {
                 position: "top-right",
                 autoClose: 5000,
@@ -365,11 +383,12 @@ const Payment = () => {
                                 <div >
                                     <input style={{ width: "250px", padding: "20px" }}
                                         type="text"
+                                        maxLength="19"
                                         placeholder="Card Number"
                                         name='cardNumber'
                                         autoComplete="off"
                                         value={debitCardForm.cardNumber}
-                                        onChange={(e) => setDebitCardForm({...debitCardForm,cardNumber: e.target.value })}
+                                        onChange={debitCardNumberFun}
                                     />
                                     <div>
                                         <input style={{ width: "180px", padding: "15px" }}
@@ -379,14 +398,13 @@ const Payment = () => {
                                         />
                                         <input style={{ width: "70px", padding: "16px" }}
                                             type="text"
-
+                                            maxLength="3"
                                             placeholder="CVV"
                                             autoComplete="off"
                                             value={debitCardForm.cvvNumber}
-                                            onChange={(e) => setDebitCardForm({ ...debitCardForm, cvvNumber: e.target.value })}
+                                            onChange={debitCard_CVV_Fun}
                                         />
                                     </div>
-
                                     <Button onClick={debitCardFunction} style={{ backgroundColor: "#60b246", marginTop: "10px", width: "250px" }}>Pay <FormatPrice price={shipping_fee + total_amount} /></Button>
                                 </div>
                             </div>}
@@ -429,10 +447,10 @@ const Payment = () => {
                                 </div>
                             }
                             {arrowState1 && <div className='Add_New_UPI_ID Wallet'>
-                                {amazon && <Button  onClick={payWithAmazon} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Amazon} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }}  />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
-                                {paytm && <Button  onClick={PayWithPaytm} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PaytmPay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }}  />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
-                                {phonePe && <Button onClick={PayWithPhonePe}  style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PhonePay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
-                                {googlePay && <Button  onClick={payWithGooglePay} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Mobikwik} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {amazon && <Button onClick={payWithAmazon} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Amazon} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {paytm && <Button onClick={PayWithPaytm} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PaytmPay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {phonePe && <Button onClick={PayWithPhonePe} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={PhonePay} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
+                                {googlePay && <Button onClick={payWithGooglePay} style={{ color: "white", backgroundColor: "#1ba672", marginTop: "-10px" }}><img src={Mobikwik} alt="" style={{ borderRadius: "5px", width: "20px", paddingTop: "-50px" }} />  with <FormatPrice price={shipping_fee + total_amount} /> </Button>}
                             </div>}
                         </div>
 
@@ -479,16 +497,18 @@ const Payment = () => {
                                 <input
                                     type="text"
                                     value={inputVal}
-                                    onChange={(e) => setInputVal(e.target.value)}
+                                    onChange={CodFun}
                                     placeholder="captcha"
                                     name="username"
                                     autoComplete="off"
-                                    className='capatcha' 
+                                    className='capatcha'
+                                    maxLength="3"
+                                    style={{ fontSize: "18px" }}
                                 />
                                 <Button style={{ backgroundColor: "#fb641b" }} onClick={confirmOrder}>Confirm Order</Button>
                             </div>}
-                            
-                            <Receipt receipt={receipt} SetReceipt={SetReceipt}/>
+
+                        <Receipt receipt={receipt} SetReceipt={SetReceipt} />
                     </div>
 
                 </div>

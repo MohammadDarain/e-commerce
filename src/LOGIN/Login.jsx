@@ -1,87 +1,173 @@
-import React, {useState } from 'react'
-import './Login.css'
-// import Facebook from '../../Logo/facebook.png'
-// import Google from '../../Logo/Google.png'
-import { Link } from 'react-router-dom';
-
-// import { DataParentContext } from '../App';
 import { useNavigate } from 'react-router-dom';
-const Login = ({ setLoginDetails }) => {
-    const navegate = useNavigate();
+import { NavLink } from "react-router-dom";
+import '../LOGIN/Login.css';
+import { useContext, useState } from "react";
+import { DataParentContext } from '../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-    // const localContext = useContext(DataParentContext);
-    // const { LoginDetails, setLoginDetails } = localContext;
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Login = () => {
+  const Context = useContext(DataParentContext);
+  const { LoginDetails, setLoginDetails } = Context
+  console.log("Context", LoginDetails);
+  const navegate = useNavigate();
 
-    const LoginData = (e) => {
-        e.preventDefault();
-        let emailPattern = /^\S+@\S+\.\S+$/;
-        let passwordPatern = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+  const [email, setEmiail] = useState("");
+  const [password, setpassword] = useState("");
 
-        if (email === "" && password === "") {
-            return alert("All  input field are  mandatory ...")
-        } else if (email==='') {
-            alert('Please enter Email ...')
-        } else if (!email.match(emailPattern)) {
-            alert('Please enter valid email ...')
-        } else if (password === "") {
-            alert('Please enter Password ...')
-        } else if (!password.match(passwordPatern)) {
-            alert('Password must be alpha-numric ...')
-            //setPassword('');
-        } else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
-            alert("Your email and password do not match Please try again ...")
-            //setPassword('');
-           
-        } else {
-            if (email === localStorage.getItem("email") && password === localStorage.getItem("password")) {
-                localStorage.setItem("logIn",true)
-                let obj = [{
-                    userName: localStorage.getItem("userName"),
-                    email: localStorage.getItem("email"),
-                    password: localStorage.getItem("password")
 
-                }]
-                setLoginDetails(obj)
-                alert("Login Successfully ...");
-                navegate('/')
-            }
+  const inputEmail = (e) => {
+    setEmiail(e.target.value);
+    console.log("email", e.target.value)
+  }
+  const inputPass = (e) => {
+    setpassword(e.target.value)
+    console.log("pass", e.target.value)
+  }
+
+  const LoginData = (e) => {
+    e.preventDefault();
+    let emailPattern = /^\S+@\S+\.\S+$/;
+    let passwordPatern = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+
+    if (email === "" && password === "") {
+      toast.error("All  input field are  mandatory ...", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+    } else if (email === '') {
+      toast.error('Please enter Email ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    } else if (!email.match(emailPattern)) {
+      toast.error('Please enter valid email ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    } else if (password === "") {
+      toast.error('Please enter Password ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    } else if (!password.match(passwordPatern)) {
+      setpassword("")
+      toast.error('Password must be alpha-numric ...', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+
+    } else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
+      toast.error("Your email and password do not match Please try again ...", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setpassword('');
+      setEmiail("")
+
+    } else {
+      if (email === localStorage.getItem("email") && password === localStorage.getItem("password")) {
+        localStorage.setItem("logIn", true)
+        toast.success("Login Successfully  ...", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        let obj = {
+          userName: localStorage.getItem("userName"),
+          email: localStorage.getItem("email"),
+          password: localStorage.getItem("password")
 
         }
-    }
-    return (
-        <form>
-            <div className='LoginContainer'>
-                <div className='mainLogin'>
-                    <h1 style={{ textAlign: "center", marginTop: "15px" }}>Log in</h1>
-                    <h3 style={{ textAlign: "center", marginTop: "-15px" }}>Don't have an account?<span style={{ color: "rgb(13,110,253)" }}><Link to="/signUp" style={{ color: "rgb(32,70,151)", textDecoration: "none" }} > Sign Up </Link></span></h3>
-                    <div className='icons'>
-                        
-                       
-                    </div>
-                    <div className='OR'>
-                        <div className='spaceDiv'></div>
-                        <span className='OORR'>or</span>
-                        <div className='spaceDiv'></div>
-                    </div>
-                    <div className='center'>
-                        <div className='Email'>
-                            <label htmlFor="" style={{ marginRight: "220px" }}>Email</label><br />
-                            <input type="email" placeholder='Enter Email' onChange={(e) => setEmail(e.target.value)} required /><br />
-                        </div>
-                        <div className='Email'>
-                            <label htmlFor="" style={{ marginRight: "200px" }}>Password</label><br />
-                            <input type="password" placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required /><br />
-                        </div>
-                        <button onClick={(e) => LoginData(e)}>Log in</button>
-                        <p style={{ color: "rgb(32,70,151)", cursor: "pointer" }}><b>Forgot Password ?</b></p>
-                    </div>
-                </div>
-            </div>
-        </form>
-    )
-}
+        setLoginDetails(obj)
+        navegate('/')
+      }
 
-export default Login
+    }
+  }
+
+  return (
+    <div className="main">
+      <div className="LoginCss">
+        <h2 style={{ textAlign: "center" }}>Login Here</h2>
+        <p><ToastContainer /></p>
+        <div className="form_feild" >
+
+          <div className="input_feild">
+            <input
+              type="email"
+              name="Email"
+              placeholder="Email"
+              value={email}
+              autoComplete="off"
+              onChange={inputEmail}
+              required
+            />
+          </div>
+          <div className="input_feild">
+            <input
+              type="password"
+              placeholder="password"
+              name="password"
+              value={password}
+              required
+              autoComplete="off"
+              onChange={inputPass}
+            />
+          </div>
+          <div style={{ textAlign: "center", marginTop: "-25px" }}>
+            <input type="submit" value="Log In" onClick={(e) => LoginData(e)} />
+          </div>
+          <h3 className="have_an_account">Don't have an account ?<NavLink to="/Signup">  Create an account</NavLink></h3>
+        </div>
+      </div>
+
+    </div>
+  );
+};
+
+export default Login;

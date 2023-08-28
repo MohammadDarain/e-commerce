@@ -42,7 +42,6 @@ const App = () => {
       mobile: "768px",
       tab: "998px",
     },
-
   };
 
   return (
