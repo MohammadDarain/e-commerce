@@ -4,39 +4,43 @@ import FormatPrice from '../Helper/FormatePrice';
 import styled from "styled-components";
 
 const PriceDetails = () => {
-    const {total_amount,total_item, shipping_fee } = useCartContext();
-    
+  const { total_amount,cart, total_item, shipping_fee } = useCartContext();
+
   return (
     <Wrapper>
-   <div className="order-total--amount">
-          <div className="order-total--subdata">
+      <div className="order-total--amount">
+        <div className="order-total--subdata">
           <div>
-          <p>item:</p>
-           <h3> {total_item}</h3>
+            <p>Product:</p>
+            <h3> {cart.length}</h3>
           </div>
-            <div>
-            
-              <p>subtotal:</p>
-              <p>
-                <FormatPrice price={total_amount} />
-              </p>
-            </div>
-            <div>
-              <p>shipping fee:</p>
-              <p>
-                <FormatPrice price={shipping_fee} />
-              </p>
-            </div>
-            <hr />
-            <div>
-              <p>order total:</p>
-              <p>
-                <FormatPrice price={shipping_fee + total_amount} />
-              </p>
-            </div>
+          <div>
+            <p>item:</p>
+            <h3> {total_item}</h3>
+          </div>
+          <div>
+
+            <p>subtotal:</p>
+            <p>
+              <FormatPrice price={total_amount} />
+            </p>
+          </div>
+          <div>
+            <p>shipping fee:</p>
+            <p>
+              <FormatPrice price={shipping_fee} />
+            </p>
+          </div>
+          <hr />
+          <div>
+            <p>order total:</p>
+            <p>
+              <FormatPrice price={shipping_fee + total_amount} />
+            </p>
           </div>
         </div>
-        </Wrapper>
+      </div>
+    </Wrapper>
   )
 }
 const Wrapper = styled.section`

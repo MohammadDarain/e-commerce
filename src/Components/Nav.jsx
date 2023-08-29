@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Cart from "../Cart";
 
 const Nav = () => {
-  const { total_item,cart } = useCartContext();
+  const { total_item, cart } = useCartContext();
   const [menuIcon, setMenuIcon] = useState();
   const Context = useContext(DataParentContext);
   const navegate = useNavigate();
@@ -48,10 +48,10 @@ const Nav = () => {
       });
 
       Context.setLoginDetails([])
-      
+
     }
   }
-  
+
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;

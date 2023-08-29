@@ -44,13 +44,25 @@ const Payment = () => {
         date: "",
     });
     const [debitInputs, setDebitInputs] = useState([]);
-     const CardPattern = "[0-9\s]{13,19}"
+    //  const CardPattern = "[0-9\s]{13,19}"
 
     const debitCardNumberFun = (e) => {
         let inputTargetValue = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
         let formattedCardNumber = inputTargetValue.slice(0, 4).concat(" ", inputTargetValue.slice(4, 8)).concat(" ", inputTargetValue.slice(8, 12)).concat(" ", inputTargetValue.slice(12, 16)).trim();
-        console.log(formattedCardNumber.length,"Len")
+        console.log(formattedCardNumber.length, "Len")
         setDebitCardForm({ ...debitCardForm, cardNumber: formattedCardNumber })
+    }
+    const validThru = (e) => {
+        let inputTargetValue = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters  
+        let formattedExpiryDate;
+        if (inputTargetValue.length <= 2) {
+            // If the input is empty or has one or two digits, keep it as it is
+            formattedExpiryDate = inputTargetValue;
+        } else {
+            // Otherwise, format the input as "MM/YY"
+            formattedExpiryDate = inputTargetValue.slice(0, 2).concat("/", inputTargetValue.slice(2, 4)).trim();
+        }
+        setDebitCardForm({ ...debitCardForm, date: formattedExpiryDate })
     }
 
     const debitCard_CVV_Fun = (e) => {
@@ -392,9 +404,10 @@ const Payment = () => {
                                     />
                                     <div>
                                         <input style={{ width: "180px", padding: "15px" }}
-                                            type="date"
+                                            type="text"
+                                            placeholder='valid thru (MM/YY)'
                                             value={debitCardForm.date}
-                                            onChange={(e) => setDebitCardForm({ ...debitCardForm, date: e.target.value })}
+                                            onChange={validThru}
                                         />
                                         <input style={{ width: "70px", padding: "16px" }}
                                             type="text"
