@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import Product from "./Product";
-
-
+import NoItem from './../Images/NoItem.jpg'
 
 const GridView = ({ products }) => {
+  if (products.length === 0) {
+    return <Wrapper className="section">
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={NoItem} alt="No item" />
+      </div>
+    </Wrapper>
+  }
   return (
     <Wrapper className="section">
       <div className="container grid grid-three-column">

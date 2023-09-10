@@ -2,8 +2,16 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import FormatPrice from "../Helper/FormatePrice";
 import { Button } from "../styles/Button";
+import NoItem from './../Images/NoItem.jpg'
 
 const ListView = ({ products }) => {
+  if (products.length === 0) {
+    return <Wrapper className="section">
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={NoItem} alt="No item" />
+      </div>
+    </Wrapper>
+  }
   return (
     <Wrapper className="section">
       <div className="container grid">
