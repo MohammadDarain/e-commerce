@@ -85,18 +85,20 @@ const SignUp = () => {
         progress: undefined,
         theme: "light",
       })
-    } else if (!password.match(passwordPatern)) {
-      toast.error('Password must be alpha-numric ...', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      })
-    }else if (localStorage.getItem("email")===email) {
+    } 
+    // else if (!password.match(passwordPatern)) {
+    //   toast.error('Password must be alpha-numric ...', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   })
+    // }
+    else if (localStorage.getItem("email")===email) {
       toast.error('email  already exists', {
         position: "top-right",
         autoClose: 5000,

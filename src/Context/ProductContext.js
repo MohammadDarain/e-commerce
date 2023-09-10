@@ -3,9 +3,11 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from '../Reducer/ProductReducer'
 
 
+
 const AppContext = createContext();
 
 const API = "https://api.pujakaitem.com/api/products";
+// const API = "https://flipcart-mern-eo8h.onrender.com/products"
 
 const initialState = {
     isLoading: false,
@@ -20,13 +22,15 @@ const AppProvider = ({ children }) => {
 
     const getProducts = async (url) => {
         dispatch({ type: "SET_LOADING" })
+        // debugger
         try {
             const res = await axios.get(url);
             const products = await res.data;
-            console.log("ProductsData",products)
+            console.log("products", products)
             dispatch({ type: "SET_API_DATA", payload: products })
         } catch (error) {
             dispatch({ type: "API_ERROR" })
+            console.log("products11")
         }
     }
 
@@ -35,7 +39,7 @@ const AppProvider = ({ children }) => {
         try {
             const res = await axios.get(url);
             const singleProduct = await res.data;
-            console.log("singleProductData",singleProduct)
+            console.log("singleProductData", singleProduct)
             dispatch({ type: "SET_SINGLE_PRODUCT", payload: singleProduct });
         } catch (error) {
             dispatch({ type: "SET_SINGLE_ERROR" });
@@ -46,7 +50,6 @@ const AppProvider = ({ children }) => {
         console.log("firstLine")
         getProducts(API);
     }, [])
-
 
     return (
         <AppContext.Provider value={{ ...state, getSingleProduct }}>

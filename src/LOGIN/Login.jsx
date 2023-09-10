@@ -76,21 +76,21 @@ const Login = () => {
         progress: undefined,
         theme: "light",
       })
-    } else if (!password.match(passwordPatern)) {
-      setpassword("")
-      toast.error('Password must be alpha-numric ...', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-
-
-    } else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
+    } 
+//     else if (!password.match(passwordPatern)) {
+//       setpassword("")
+//       toast.error('Password must be alpha-numric ...', {
+//         position: "top-right",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "light",
+//       });
+// }
+ else if (email !== localStorage.getItem("email") || password !== localStorage.getItem("password")) {
       toast.error("Your email and password do not match Please try again ...", {
         position: "top-right",
         autoClose: 5000,
